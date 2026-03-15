@@ -1551,34 +1551,56 @@ function printPdf() {
   const old = document.getElementById('print-style');
   if (old) old.remove();
 
-  const scaleMap = { small: 0.72, normal: 0.62, large: 0.52 };
-  const scale = scaleMap[pdfSize] || 0.62;
-  const pageWidthMm = Math.round(210 / scale);
+  const fontMap = { small: '11px', normal: '9.5px', large: '8px' };
+  const baseFont = fontMap[pdfSize] || '9.5px';
 
   const style = document.createElement('style');
   style.id = 'print-style';
   style.textContent = `
     @media print {
-      @page { size: A4 portrait; margin: 0; }
-      html, body { width: 210mm; height: 297mm; margin: 0 !important; padding: 0 !important; overflow: hidden; }
-      #cv-wrapper { margin: 0 !important; padding: 0 !important; display: block !important; }
+      @page { size: A4 portrait; margin: 10mm; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html { font-size: ${baseFont} !important; }
+      body { margin: 0 !important; padding: 0 !important; background: white !important; }
+      #toolbar, #access-overlay, .modal-overlay, .save-dialog,
+      .delete-btn, .add-btn, .add-section-btn, .delete-section-btn,
+      .skill-slider, #photo-size-slider { display: none !important; }
+      #cv-wrapper { margin: 0 !important; padding: 0 !important; display: block !important; width: 100% !important; }
       #cv-page {
-        width: ${pageWidthMm}mm !important;
-        max-width: none !important;
+        display: grid !important;
+        grid-template-columns: 200px 1fr !important;
+        width: 100% !important;
+        max-width: 100% !important;
         border-radius: 0 !important;
         box-shadow: none !important;
-        transform: scale(${scale});
-        transform-origin: top left;
-        position: absolute;
-        top: 0; left: 0;
+        overflow: visible !important;
+        page-break-inside: avoid;
       }
+      #cv-sidebar { padding: 16px 12px !important; gap: 14px !important; }
+      #cv-main { padding: 16px 14px !important; gap: 14px !important; }
+      .cv-name { font-size: 1.6em !important; }
+      .cv-profession { font-size: 0.82em !important; }
+      .cv-summary { font-size: 0.78em !important; margin-top: 6px !important; }
+      .photo-circle { width: 70px !important; height: 70px !important; }
+      .section-title { font-size: 0.9em !important; padding-bottom: 3px !important; }
+      .sidebar-title { font-size: 0.62em !important; }
+      .entry { padding: 5px 0 !important; gap: 2px 8px !important; }
+      .entry-title { font-size: 0.82em !important; }
+      .entry-sub { font-size: 0.72em !important; }
+      .entry-date { font-size: 0.68em !important; }
+      .entry-desc { font-size: 0.72em !important; line-height: 1.4 !important; }
+      .skill-name { font-size: 0.75em !important; }
+      .skill-bar-track { height: 3px !important; }
+      .contact-item { font-size: 0.72em !important; }
+      .tag-item, .skill-tag { font-size: 0.68em !important; padding: 2px 7px !important; }
+      .cv-footer { font-size: 0.68em !important; padding-top: 8px !important; }
     }
   `;
   document.head.appendChild(style);
   setTimeout(() => {
     window.print();
-    setTimeout(() => style.remove(), 500);
-  }, 350);
+    setTimeout(() => style.remove(), 1000);
+  }, 400);
 }
 
 // ============================================================
