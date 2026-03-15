@@ -1,1884 +1,1590 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CV Premium v4</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Premium v4 — ADHAZONE</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* =============================================
-   RESET
-============================================= */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-img { display:block; max-width:100%; }
-button { cursor:pointer; }
+/* ============================================================
+   ROOT VARIABLES & THEMES
+============================================================ */
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --primary: #1a1a2e;
+  --accent: #c9a84c;
+  --accent2: #8b5e3c;
+  --text: #1a1a2e;
+  --text-muted: #6b6b7a;
+  --border: #e0ddd5;
+  --sidebar-bg: #1a1a2e;
+  --sidebar-text: #f0ead8;
+  --sidebar-muted: #a09b8c;
+  --tag-bg: rgba(201,168,76,0.15);
+  --tag-text: #8b6914;
+  --bar-bg: rgba(255,255,255,0.15);
+  --bar-fill: #c9a84c;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.15);
+}
 
-/* =============================================
-   TEMA TOKENS — 6 TEMA
-============================================= */
-/* 1. Modern */
-.tm { --pg:#e8e8e4; --cv:#fff; --sl:#f7f7f5; --hd:#fff; --a1:#111; --a2:#555; --mu:#999; --ln:#eee; --tg:#f0f0ee; --tc:#444; --nm:#111; --ni:#999; --bf:#111; --fb:#111; --fc:#fff; --st:#111; --fn:'DM Serif Display',serif; --fb2:'DM Sans',sans-serif; }
-/* 2. Warm */
-.tw { --pg:#ddd5c5; --cv:#faf7f2; --sl:#ede5d5; --hd:#ede5d5; --a1:#8b5e3c; --a2:#6b4f2a; --mu:#9a8878; --ln:#e2d5c3; --tg:#e8d5c0; --tc:#6b4f2a; --nm:#2c2416; --ni:#a07850; --bf:#8b5e3c; --fb:#ede5d5; --fc:#6b4f2a; --st:#a07850; --fn:'Cormorant Garamond',serif; --fb2:'DM Sans',sans-serif; }
-/* 3. Dark */
-.td { --pg:#0d0d0d; --cv:#161616; --sl:#111; --hd:#0d0d0d; --a1:#e8c97a; --a2:#ccc; --mu:#666; --ln:#2a2a2a; --tg:#222; --tc:#e8c97a; --nm:#f5f5f5; --ni:#e8c97a; --bf:#e8c97a; --fb:#0d0d0d; --fc:#e8c97a; --st:#e8c97a; --fn:'Outfit',sans-serif; --fb2:'Outfit',sans-serif; }
-/* 4. Editorial */
-.te { --pg:#f0ece4; --cv:#fff; --sl:#f4f4f4; --hd:#fff; --a1:#c41e3a; --a2:#333; --mu:#777; --ln:#ddd; --tg:#fff0f0; --tc:#c41e3a; --nm:#111; --ni:#c41e3a; --bf:#c41e3a; --fb:#111; --fc:#fff; --st:#c41e3a; --fn:'Playfair Display',serif; --fb2:'DM Sans',sans-serif; }
-/* 5. Art Deco */
-.ta { --pg:#12192b; --cv:#1a2540; --sl:#0f1e38; --hd:#0f1e38; --a1:#f0b429; --a2:#ccd6f6; --mu:#8892b0; --ln:#233554; --tg:rgba(240,180,41,.15); --tc:#f0b429; --nm:#ccd6f6; --ni:#f0b429; --bf:#f0b429; --fb:#0f1e38; --fc:#f0b429; --st:#f0b429; --fn:'Outfit',sans-serif; --fb2:'Outfit',sans-serif; }
-/* 6. Retro */
-.tr { --pg:#2c1810; --cv:#f5e6d0; --sl:#3d2314; --hd:#3d2314; --a1:#c8860a; --a2:#5c3a1a; --mu:#8b7355; --ln:#d4c4a8; --tg:#e8d4b0; --tc:#5c3a1a; --nm:#f5e6d0; --ni:#c8860a; --bf:#c8860a; --fb:#2c1810; --fc:#f5e6d0; --st:#c8860a; --fn:'Libre Baskerville',serif; --fb2:'DM Sans',sans-serif; }
+[data-theme="warm"] {
+  --bg: #fdf6ec;
+  --surface: #fffbf5;
+  --primary: #3d1f00;
+  --accent: #e07b39;
+  --accent2: #c45c1a;
+  --text: #3d1f00;
+  --text-muted: #8c6045;
+  --border: #f0dcc4;
+  --sidebar-bg: #3d1f00;
+  --sidebar-text: #fdf0e0;
+  --sidebar-muted: #c4956a;
+  --tag-bg: rgba(224,123,57,0.12);
+  --tag-text: #c45c1a;
+  --bar-fill: #e07b39;
+}
 
-/* =============================================
-   BODY
-============================================= */
+[data-theme="dark"] {
+  --bg: #0f0f14;
+  --surface: #16161f;
+  --primary: #e8e4f0;
+  --accent: #7c6ee0;
+  --accent2: #b09ae8;
+  --text: #e8e4f0;
+  --text-muted: #8880a0;
+  --border: #2a2a3a;
+  --sidebar-bg: #0a0a10;
+  --sidebar-text: #e8e4f0;
+  --sidebar-muted: #6860a0;
+  --tag-bg: rgba(124,110,224,0.15);
+  --tag-text: #b09ae8;
+  --bar-fill: #7c6ee0;
+}
+
+[data-theme="editorial"] {
+  --bg: #f2f0eb;
+  --surface: #ffffff;
+  --primary: #111111;
+  --accent: #d63031;
+  --accent2: #b01020;
+  --text: #111111;
+  --text-muted: #666666;
+  --border: #dddddd;
+  --sidebar-bg: #111111;
+  --sidebar-text: #f2f0eb;
+  --sidebar-muted: #999999;
+  --tag-bg: rgba(214,48,49,0.1);
+  --tag-text: #b01020;
+  --bar-fill: #d63031;
+}
+
+[data-theme="artdeco"] {
+  --bg: #f8f5ee;
+  --surface: #fffef9;
+  --primary: #1c1507;
+  --accent: #b8952a;
+  --accent2: #8a6e1c;
+  --text: #1c1507;
+  --text-muted: #7a6a40;
+  --border: #e8d9b0;
+  --sidebar-bg: #1c1507;
+  --sidebar-text: #f5eed8;
+  --sidebar-muted: #b89a5a;
+  --tag-bg: rgba(184,149,42,0.12);
+  --tag-text: #8a6e1c;
+  --bar-fill: #b8952a;
+}
+
+[data-theme="retro"] {
+  --bg: #faf3e0;
+  --surface: #fffbf0;
+  --primary: #2d2016;
+  --accent: #e8902a;
+  --accent2: #c47010;
+  --text: #2d2016;
+  --text-muted: #7a5c30;
+  --border: #e0c88a;
+  --sidebar-bg: #2d2016;
+  --sidebar-text: #faf3e0;
+  --sidebar-muted: #c4a060;
+  --tag-bg: rgba(232,144,42,0.12);
+  --tag-text: #c47010;
+  --bar-fill: #e8902a;
+  --font-display: 'Georgia', serif;
+}
+
+/* ============================================================
+   OVERLAY & ACCESS
+============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  font-family: var(--fb2, 'DM Sans', sans-serif);
-  background: var(--pg);
-  color: var(--nm);
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 28px 12px 80px;
-  transition: background .35s;
+  transition: background 0.4s, color 0.4s;
 }
 
-/* =============================================
-   TOOLBAR
-============================================= */
-.toolbar {
-  width: 100%;
-  max-width: 780px;
-  margin-bottom: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+#access-overlay {
+  position: fixed; inset: 0;
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1228 50%, #0f0f1a 100%);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  animation: overlayIn 0.4s ease;
 }
 
-.tb-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+@keyframes overlayIn { from { opacity: 0 } to { opacity: 1 } }
 
-.tb-lbl {
-  font-family: 'Outfit', sans-serif;
-  font-size: .68rem;
-  font-weight: 700;
-  color: rgba(255,255,255,.5);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-.tb-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-
-.tbtn {
-  padding: 7px 13px;
-  border-radius: 8px;
-  border: 1.5px solid rgba(255,255,255,.25);
-  background: rgba(255,255,255,.92);
-  font-family: 'Outfit', sans-serif;
-  font-size: .75rem;
-  font-weight: 700;
-  color: #222;
-  transition: all .2s;
-  white-space: nowrap;
-}
-.tbtn:hover { border-color: #333; }
-.tbtn.active-edit { background: #2563eb; color: #fff; border-color: #2563eb; }
-.tbtn.pdf { background: #111; color: #fff; border-color: #111; }
-.tbtn.danger { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
-.tbtn.danger:hover { background: #dc2626; color: #fff; }
-
-/* Tema switcher */
-.tema-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  background: rgba(255,255,255,.12);
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
-  padding: 9px 14px;
-  border: 1px solid rgba(255,255,255,.18);
-}
-
-.tema-lbl {
-  font-family: 'Outfit', sans-serif;
-  font-size: .63rem;
-  font-weight: 800;
-  color: rgba(255,255,255,.6);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.tema-opts { display: flex; gap: 6px; flex-wrap: wrap; }
-
-.topt {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 11px;
-  border-radius: 8px;
-  border: 2px solid transparent;
-  font-family: 'Outfit', sans-serif;
-  font-size: .72rem;
-  font-weight: 700;
-  transition: all .22s;
-  white-space: nowrap;
-}
-
-.topt.tm { background: #f5f5f5; color: #111; border-color: #ccc; }
-.topt.tw { background: #f5f0e8; color: #6b4f2a; border-color: #c9b99a; }
-.topt.td { background: #1a1a1a; color: #e8c97a; border-color: #444; }
-.topt.te { background: #fff; color: #c41e3a; border-color: #ffd0d0; }
-.topt.ta { background: #0f1e38; color: #f0b429; border-color: #233554; }
-.topt.tr { background: #3d2314; color: #c8860a; border-color: #5c3a1a; }
-.topt.sel { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.3); }
-.topt.tm.sel { border-color: #111; }
-.topt.tw.sel { border-color: #8b5e3c; }
-.topt.td.sel { border-color: #e8c97a; }
-.topt.te.sel { border-color: #c41e3a; }
-.topt.ta.sel { border-color: #f0b429; }
-.topt.tr.sel { border-color: #c8860a; }
-.tdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-/* =============================================
-   CV PAPER
-============================================= */
-.cv {
-  width: 100%;
-  max-width: 780px;
-  background: var(--cv);
-  box-shadow: 0 20px 70px rgba(0,0,0,.22);
-  position: relative;
-}
-
-/* top color strip */
-.cv::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: var(--st);
-  z-index: 5;
-}
-.te .cv::before { height: 6px; }
-.ta .cv::before { background: linear-gradient(90deg, #e94560, #f0b429); }
-.tr .cv::before { height: 7px; background: repeating-linear-gradient(90deg, #c8860a 0, #c8860a 8px, #2c1810 8px, #2c1810 10px); }
-
-/* =============================================
-   HEADER — 2 COLUMNS
-============================================= */
-.cv-hd {
-  display: flex;
-  background: var(--hd);
-  border-bottom: 1px solid var(--ln);
-  transition: background .35s, border-color .35s;
-}
-
-/* Left col */
-.hd-left {
-  width: 190px;
-  flex-shrink: 0;
-  padding: 28px 16px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  border-right: 1px solid var(--ln);
-}
-
-.td .hd-left, .ta .hd-left { border-right-color: var(--ln); }
-.te .hd-left { background: #f8f8f8; border-right: 3px solid #111; }
-.ta .hd-left { background: rgba(0,0,0,.2); }
-.tr .hd-left { background: rgba(0,0,0,.15); }
-
-/* Photo */
-.photo-outer {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.photo-box {
-  border-radius: 50%;
-  background: var(--tg);
-  border: 3px solid rgba(128,128,128,.25);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
-  cursor: pointer;
-  transition: all .3s;
-  position: relative;
-  /* default size — controlled by JS */
-  width: 80px;
-  height: 80px;
-}
-
-.te .photo-box { border-radius: 6px; border: 2px solid #111; }
-.ta .photo-box { border-color: #f0b429; box-shadow: 0 0 0 2px #e94560; }
-.tr .photo-box { border-color: #c8860a; border-width: 3px; }
-
-.photo-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  inset: 0;
-  display: none;
-}
-
-.photo-ov {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity .2s;
-  font-size: .55rem;
-  color: #fff;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.4;
-  padding: 4px;
-}
-.photo-box:hover .photo-ov { opacity: 1; }
-
-#photoInput { display: none; }
-
-/* Photo size slider */
-.photo-sizer {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  width: 100%;
-}
-body.editing .photo-sizer { display: flex; }
-
-.sizer-lbl {
-  font-size: .58rem;
-  font-weight: 700;
-  color: var(--mu);
-  letter-spacing: .5px;
-  font-family: 'Outfit', sans-serif;
-}
-
-.sizer-input {
-  width: 100%;
-  height: 3px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: var(--ln);
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
-  transition: background .35s;
-}
-.sizer-input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 13px; height: 13px;
-  border-radius: 50%;
-  background: var(--a1);
-  box-shadow: 0 1px 4px rgba(0,0,0,.25);
-}
-
-/* Contacts */
-.contacts { display: flex; flex-direction: column; gap: 6px; width: 100%; }
-
-.contact-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .67rem;
-  color: var(--mu);
-  line-height: 1.4;
-  position: relative;
-}
-.td .contact-row, .ta .contact-row, .tr .contact-row { color: #aaa; }
-
-.c-ic {
-  width: 17px; height: 17px;
-  background: var(--tg);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .55rem;
-  flex-shrink: 0;
-}
-
-.c-del {
-  display: none;
-  position: absolute;
-  right: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 13px; height: 13px;
-  border-radius: 50%;
-  background: #ef4444;
-  color: #fff;
-  border: none;
-  font-size: .5rem;
-  align-items: center;
-  justify-content: center;
-}
-body.editing .c-del { display: flex; }
-
-/* Right col */
-.hd-right {
-  flex: 1;
-  min-width: 0;
-  padding: 28px 28px 20px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.cv-name {
-  font-family: var(--fn);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--nm);
-  line-height: 1.05;
-  letter-spacing: -.5px;
-  margin-bottom: 4px;
-  word-break: break-word;
-}
-.cv-name em { font-style: italic; color: var(--ni); }
-
-.td .cv-name, .ta .cv-name, .tr .cv-name { color: #fff; }
-.te .cv-name { font-size: 2rem; font-weight: 900; }
-.te .cv-name::after { content: ''; display: block; width: 44px; height: 4px; background: #c41e3a; margin-top: 6px; border-radius: 2px; }
-
-.cv-role {
-  font-size: .68rem;
-  font-weight: 600;
-  color: var(--a1);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.td .cv-role { color: #e8c97a; }
-.ta .cv-role { color: #f0b429; letter-spacing: 3px; }
-.tr .cv-role { color: #c8860a; }
-
-.cv-about {
-  font-size: .78rem;
-  font-weight: 300;
-  color: var(--mu);
-  line-height: 1.8;
-  padding-left: 11px;
-  border-left: 2px solid var(--ln);
-}
-.td .cv-about { color: #aaa; border-left-color: #333; }
-.ta .cv-about { color: #8892b0; border-left-color: #f0b429; }
-.tr .cv-about { color: #8b7355; border-left-color: #c8860a; }
-.cv-about strong { color: var(--a1); font-weight: 600; }
-
-/* =============================================
-   BODY — SIDE + MAIN
-============================================= */
-.cv-body {
-  display: flex;
-  align-items: stretch;
-}
-
-/* ── SIDEBAR ── */
-.cv-side {
-  width: 190px;
-  flex-shrink: 0;
-  padding: 20px 16px 28px;
-  background: var(--sl);
-  border-right: 1px solid var(--ln);
-  transition: background .35s, border-color .35s;
-}
-.td .cv-side { background: #111; border-right-color: #222; }
-.ta .cv-side { background: #0f1e38; border-right-color: #233554; }
-.tr .cv-side { background: #3d2314; border-right-color: rgba(200,134,10,.3); }
-.te .cv-side { background: #f8f8f8; border-right: 2px solid #ddd; }
-
-.s-sec { margin-bottom: 20px; }
-.s-sec:last-child { margin-bottom: 0; }
-
-.s-ttl {
-  font-size: .57rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--a1);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.td .s-ttl { color: #e8c97a; }
-.ta .s-ttl { color: #f0b429; }
-.tr .s-ttl { color: #c8860a; }
-.te .s-ttl { color: #c41e3a; }
-
-/* Skill */
-.sk-row {
-  margin-bottom: 9px;
-  display: flex;
-  align-items: flex-start;
-  gap: 5px;
-}
-.sk-wrap { flex: 1; min-width: 0; }
-
-.sk-name {
-  font-size: .72rem;
-  color: var(--nm);
-  font-weight: 400;
-  display: block;
-  margin-bottom: 3px;
-  word-break: break-word;
-}
-.td .sk-name, .ta .sk-name, .tr .sk-name { color: #e0e0e0; }
-
-.sk-bar { height: 3px; background: var(--ln); border-radius: 2px; overflow: hidden; }
-.td .sk-bar, .ta .sk-bar { background: rgba(255,255,255,.12); }
-.sk-fill { height: 100%; background: var(--bf); border-radius: 2px; }
-
-/* Slider — visible only in edit mode */
-.range-sl {
-  display: none;
-  width: 100%;
-  height: 3px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: var(--ln);
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
-  margin-top: 4px;
-}
-.range-sl::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 13px; height: 13px;
-  border-radius: 50%;
-  background: var(--a1);
-  box-shadow: 0 1px 3px rgba(0,0,0,.2);
-}
-body.editing .range-sl { display: block; }
-
-/* Tags */
-.tags-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
-.s-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  background: var(--tg);
-  color: var(--tc);
-  font-size: .63rem;
-  font-weight: 500;
-  padding: 3px 8px;
+.access-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  animation: boxIn 0.5s 0.1s both cubic-bezier(0.34,1.56,0.64,1);
 }
-.td .s-tag { background: #222; color: #e8c97a; border: 1px solid #333; }
-.ta .s-tag { background: rgba(240,180,41,.12); color: #f0b429; border: 1px solid rgba(240,180,41,.25); }
-.tr .s-tag { background: rgba(200,134,10,.15); color: #c8860a; border: 1px solid rgba(200,134,10,.25); }
 
-/* Lang */
-.lg-row {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: flex-start;
-  gap: 5px;
-}
-.lg-wrap { flex: 1; min-width: 0; }
-.lg-name { font-size: .73rem; color: var(--nm); font-weight: 600; word-break: break-word; }
-.td .lg-name, .ta .lg-name, .tr .lg-name { color: #e0e0e0; }
-.lg-lv { font-size: .63rem; color: var(--mu); margin-top: 1px; }
+@keyframes boxIn { from { transform: scale(0.85) translateY(20px); opacity: 0 } to { transform: none; opacity: 1 } }
 
-/* Achievement */
-.ac-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
+.access-logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: #c9a84c;
   margin-bottom: 8px;
-}
-.ac-row:last-child { margin-bottom: 0; }
-.ac-ic {
-  width: 16px; height: 16px;
-  background: var(--tg);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .55rem;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.td .ac-ic, .ta .ac-ic { background: rgba(255,255,255,.08); }
-.ac-txt { font-size: .7rem; color: var(--mu); line-height: 1.5; flex: 1; min-width: 0; word-break: break-word; }
-.td .ac-txt, .ta .ac-txt { color: #aaa; }
-.tr .ac-txt { color: #8b7355; }
-
-/* ── MAIN ── */
-.cv-main {
-  flex: 1;
-  min-width: 0;
-  padding: 20px 28px 28px 22px;
+  letter-spacing: 0.05em;
 }
 
-.m-sec { margin-bottom: 18px; }
-.m-sec:last-child { margin-bottom: 0; }
-
-.m-ttl {
-  font-family: var(--fn);
-  font-size: .93rem;
-  font-weight: 700;
-  color: var(--a1);
-  margin-bottom: 11px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.td .m-ttl { color: #e8c97a; }
-.ta .m-ttl { color: #f0b429; }
-.tr .m-ttl { color: #c8860a; }
-.te .m-ttl { font-size: 1rem; font-weight: 900; border-bottom: 2px solid #111; padding-bottom: 5px; }
-
-.m-ttl-line {
-  flex: 1;
-  height: 1px;
-  background: var(--ln);
-}
-.te .m-ttl-line { display: none; }
-.td .m-ttl-line { background: #2a2a2a; }
-.ta .m-ttl-line { background: #233554; }
-
-/* Entry */
-.entry {
-  position: relative;
-  padding-left: 12px;
-  margin-bottom: 13px;
-}
-.entry:last-child { margin-bottom: 0; }
-
-.entry::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 7px;
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--a1);
-  flex-shrink: 0;
-}
-.td .entry::before { background: #e8c97a; }
-.ta .entry::before { background: #f0b429; }
-.tr .entry::before { background: #c8860a; }
-.te .entry::before { border-radius: 1px; width: 5px; height: 5px; background: #c41e3a; }
-
-.e-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 1px;
+.access-sub {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 36px;
 }
 
-.e-title {
-  font-size: .83rem;
+.access-input {
+  width: 100%;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-align: center;
+  text-transform: uppercase;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 16px;
+}
+
+.access-input:focus {
+  border-color: #c9a84c;
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+}
+
+.access-input.error {
+  border-color: #e05555;
+  box-shadow: 0 0 0 3px rgba(224,85,85,0.2);
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%,100% { transform: translateX(0) }
+  25% { transform: translateX(-8px) }
+  75% { transform: translateX(8px) }
+}
+
+.access-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #c9a84c, #a07830);
+  border: none;
+  border-radius: 10px;
+  color: #1a1a2e;
+  font-family: var(--font-body);
   font-weight: 600;
-  color: var(--nm);
-  line-height: 1.35;
-  flex: 1;
-  min-width: 0;
-  word-break: break-word;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
-.td .e-title { color: #f0f0f0; }
-.ta .e-title { color: #ccd6f6; }
-.tr .e-title { color: #f5e6d0; }
 
-.e-date {
-  font-size: .65rem;
-  color: var(--mu);
+.access-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,168,76,0.4); }
+.access-btn:active { transform: translateY(0); }
+
+.access-error {
+  margin-top: 12px;
+  color: #ff8080;
+  font-size: 0.82rem;
+  min-height: 1.2em;
+}
+
+/* ============================================================
+   TOOLBAR
+============================================================ */
+#toolbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 52px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 16px;
+  z-index: 100;
+  transition: background 0.3s;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+[data-theme="dark"] #toolbar {
+  background: rgba(22,22,31,0.95);
+}
+
+.tb-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 4px;
   white-space: nowrap;
+}
+
+.tb-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.tb-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tb-btn.active { background: var(--primary); color: var(--surface); border-color: var(--primary); }
+
+.tb-theme-btn {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.tb-theme-btn:hover { transform: scale(1.15); }
+.tb-theme-btn.active { border-color: var(--accent); transform: scale(1.1); }
+
+.tb-divider {
+  width: 1px; height: 24px;
+  background: var(--border);
+  margin: 0 4px;
   flex-shrink: 0;
-  font-style: italic;
+}
+
+/* ============================================================
+   MAIN LAYOUT
+============================================================ */
+#cv-wrapper {
+  margin-top: 52px;
+  min-height: calc(100vh - 52px);
+  display: flex; justify-content: center;
+  padding: 32px 16px 48px;
+}
+
+#cv-page {
+  width: 900px;
+  max-width: 100%;
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  transition: box-shadow 0.3s;
+}
+
+/* ============================================================
+   SIDEBAR
+============================================================ */
+#cv-sidebar {
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 40px 24px;
+  display: flex; flex-direction: column; gap: 28px;
+  min-height: 100%;
+}
+
+.photo-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+
+.photo-circle {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  object-fit: cover;
+  cursor: pointer;
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.photo-circle:hover { transform: scale(1.03); border-color: var(--accent2); }
+.photo-circle img { width: 100%; height: 100%; object-fit: cover; }
+.photo-circle .photo-placeholder { font-size: 2.5rem; opacity: 0.5; }
+
+#photo-size-slider {
+  display: none;
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.sidebar-section { display: flex; flex-direction: column; gap: 10px; }
+
+.sidebar-section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-title {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.contact-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.78rem;
+  color: var(--sidebar-muted);
+  line-height: 1.4;
+  position: relative;
+}
+
+.contact-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
+
+.skill-item, .lang-item {
+  display: flex; flex-direction: column; gap: 4px;
+  position: relative;
+}
+
+.skill-name {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--sidebar-text);
+}
+
+.skill-pct { font-size: 0.7rem; color: var(--sidebar-muted); }
+
+.skill-bar-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bar-bg);
+  overflow: visible;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--bar-fill);
+  transition: width 0.3s;
+}
+
+.skill-slider {
+  display: none;
+  width: 100%;
+  accent-color: var(--accent);
   margin-top: 2px;
 }
 
-.e-org {
-  font-size: .71rem;
-  color: var(--a1);
-  font-style: italic;
-  margin-bottom: 4px;
-  word-break: break-word;
-}
-.td .e-org { color: #e8c97a; }
-.ta .e-org { color: #f0b429; }
-.tr .e-org { color: #c8860a; }
-
-.e-desc {
-  font-size: .74rem;
-  color: var(--a2);
-  line-height: 1.75;
-  font-weight: 300;
-  word-break: break-word;
-}
-.td .e-desc { color: #aaa; }
-.ta .e-desc { color: #8892b0; }
-.tr .e-desc { color: #8b7355; }
-
-.e-badge {
+.tag-item {
   display: inline-block;
-  background: var(--tg);
-  color: var(--a1);
-  font-size: .62rem;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 3px;
-  margin-top: 4px;
-  word-break: break-word;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  color: var(--sidebar-muted);
+  font-size: 0.73rem;
+  margin: 2px;
 }
-.td .e-badge { background: #222; color: #e8c97a; }
-.ta .e-badge { background: rgba(240,180,41,.12); color: #f0b429; }
-.tr .e-badge { background: rgba(200,134,10,.12); color: #c8860a; }
 
-/* ── FOOTER ── */
-.cv-ft {
-  background: var(--fb);
-  padding: 11px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid rgba(128,128,128,.15);
+/* ============================================================
+   MAIN CONTENT
+============================================================ */
+#cv-main {
+  padding: 40px 36px;
+  display: flex; flex-direction: column; gap: 28px;
 }
-.te .cv-ft { background: #111; border-top: 3px solid #c41e3a; }
-.ta .cv-ft { background: #0a1628; }
-.tr .cv-ft { background: #2c1810; border-top: 2px double #c8860a; }
 
-.ft-q {
-  font-family: var(--fn);
-  font-size: .76rem;
-  font-style: italic;
-  color: var(--fc);
-  opacity: .65;
-  flex: 1;
-  min-width: 0;
-  word-break: break-word;
-}
-.ft-n {
-  font-size: .62rem;
+.cv-header { border-bottom: 2px solid var(--accent); padding-bottom: 20px; }
+
+.cv-name {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
   font-weight: 700;
-  color: var(--fc);
-  opacity: .45;
-  letter-spacing: 1.5px;
+  color: var(--primary);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.cv-profession {
+  font-size: 1rem;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.cv-summary {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Section */
+.cv-section { display: flex; flex-direction: column; gap: 12px; position: relative; }
+
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary);
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 6px;
+  flex: 1;
+}
+
+.section-emoji { font-size: 1rem; }
+
+/* Entry */
+.entry {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 16px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+  position: relative;
+}
+
+.entry:last-of-type { border-bottom: none; }
+
+.entry-title {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--primary);
+}
+
+.entry-sub {
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-style: italic;
+}
+
+.entry-date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  text-align: right;
   white-space: nowrap;
-  margin-left: 12px;
 }
 
-/* =============================================
-   EDIT MODE CONTROLS
-============================================= */
-/* Generic delete button */
-.d-btn {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 15px; height: 15px;
-  border-radius: 50%;
-  background: #ef4444;
-  color: #fff;
-  border: none;
-  font-size: .55rem;
-  flex-shrink: 0;
-  transition: all .18s;
+.entry-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  grid-column: 1 / -1;
+  margin-top: 2px;
 }
-.d-btn:hover { background: #dc2626; transform: scale(1.1); }
-body.editing .d-btn { display: flex; }
 
-/* Entry delete — absolute positioned */
-.e-del {
+/* Skills grid */
+.skills-grid {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+
+.skill-tag {
+  padding: 4px 12px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  position: relative;
+}
+
+/* CV Footer */
+.cv-footer {
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ============================================================
+   EDIT MODE
+============================================================ */
+body.edit-mode [contenteditable] {
+  outline: none;
+  border-bottom: 1px dashed var(--accent);
+  min-width: 30px;
+  display: inline-block;
+  cursor: text;
+}
+
+body.edit-mode [contenteditable]:focus {
+  background: rgba(201,168,76,0.08);
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
+.delete-btn {
   display: none;
   position: absolute;
-  right: -8px; top: 3px;
-  width: 16px; height: 16px;
+  top: 4px; right: -4px;
+  width: 20px; height: 20px;
   border-radius: 50%;
-  background: #ef4444;
+  background: #e05555;
   color: #fff;
   border: none;
-  font-size: .55rem;
-  align-items: center;
-  justify-content: center;
+  font-size: 0.7rem;
+  cursor: pointer;
+  align-items: center; justify-content: center;
+  line-height: 1;
   z-index: 5;
-  transition: all .18s;
+  transition: transform 0.15s;
 }
-.e-del:hover { background: #dc2626; transform: scale(1.1); }
-body.editing .e-del { display: flex; }
 
-/* Section delete */
-.sec-del {
-  display: none;
-  padding: 2px 7px;
-  border-radius: 5px;
-  border: none;
-  background: #fee2e2;
-  color: #dc2626;
-  font-family: 'Outfit', sans-serif;
-  font-size: .58rem;
-  font-weight: 700;
-  margin-left: 4px;
-  transition: all .18s;
-}
-.sec-del:hover { background: #dc2626; color: #fff; }
-body.editing .sec-del { display: inline-flex; }
+.delete-btn:hover { transform: scale(1.15); }
 
-/* Add button */
+body.edit-mode .delete-btn { display: flex; }
+
 .add-btn {
   display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 100%;
-  margin-top: 7px;
-  padding: 5px 10px;
-  border-radius: 7px;
-  border: 1.5px dashed #93c5fd;
-  background: rgba(59,130,246,.05);
-  color: #3b82f6;
-  font-family: 'Outfit', sans-serif;
-  font-size: .68rem;
-  font-weight: 700;
-  transition: all .18s;
+  align-items: center; gap: 4px;
+  padding: 5px 12px;
+  background: transparent;
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-top: 4px;
+  width: fit-content;
 }
-.add-btn:hover { background: rgba(59,130,246,.1); }
-body.editing .add-btn { display: flex; }
 
-/* Add section button */
-.add-sec {
+.add-btn:hover { background: var(--accent); color: #fff; }
+body.edit-mode .add-btn { display: flex; }
+
+.add-section-btn {
   display: none;
+  align-items: center; justify-content: center; gap: 8px;
+  padding: 12px;
+  background: transparent;
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-size: 0.83rem;
+  cursor: pointer;
+  transition: all 0.2s;
   width: 100%;
-  margin-top: 10px;
-  padding: 9px;
-  border-radius: 10px;
-  border: 2px dashed #6366f1;
-  background: rgba(99,102,241,.05);
-  color: #6366f1;
-  font-family: 'Outfit', sans-serif;
-  font-size: .75rem;
-  font-weight: 700;
-  transition: all .18s;
-  text-align: center;
-}
-.add-sec:hover { background: rgba(99,102,241,.1); }
-body.editing .add-sec { display: block; }
-
-/* Editable outline */
-body.editing [contenteditable="true"] {
-  outline: 1.5px dashed rgba(59,130,246,.35) !important;
-  border-radius: 3px;
-  min-width: 16px;
+  margin-top: 4px;
 }
 
-/* =============================================
-   MODAL
-============================================= */
-.modal-bg {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.55);
-  backdrop-filter: blur(4px);
-  z-index: 999;
+.add-section-btn:hover { border-color: var(--accent); color: var(--accent); }
+body.edit-mode .add-section-btn { display: flex; }
+
+/* delete section */
+.delete-section-btn {
   display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.modal-bg.open { display: flex; }
-.modal {
-  background: #fff;
-  border-radius: 18px;
-  padding: 24px;
-  max-width: 380px;
-  width: 100%;
-  box-shadow: 0 20px 60px rgba(0,0,0,.3);
-}
-.modal h3 { font-family: 'Outfit',sans-serif; font-size: .92rem; font-weight: 800; color: #111; margin-bottom: 4px; }
-.modal p { font-size: .75rem; color: #888; margin-bottom: 14px; }
-.presets { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
-.preset {
-  padding: 4px 10px;
-  border-radius: 7px;
-  border: 1.5px solid #e5e7eb;
-  background: #f9fafb;
-  font-family: 'Outfit', sans-serif;
-  font-size: .7rem;
-  font-weight: 600;
-  color: #374151;
-  transition: all .15s;
-}
-.preset:hover { border-color: #6366f1; color: #6366f1; background: #eef2ff; }
-.modal input {
-  width: 100%;
-  padding: 9px 12px;
-  border-radius: 9px;
-  border: 2px solid #e5e7eb;
-  font-family: 'Outfit', sans-serif;
-  font-size: .86rem;
-  outline: none;
-  transition: border .18s;
-  margin-bottom: 14px;
-}
-.modal input:focus { border-color: #6366f1; }
-.modal-btns { display: flex; gap: 8px; justify-content: flex-end; }
-.modal-cancel { padding: 7px 15px; border-radius: 7px; border: 1.5px solid #e5e7eb; background: #fff; font-family: 'Outfit',sans-serif; font-size: .77rem; font-weight: 600; color: #666; }
-.modal-ok { padding: 7px 15px; border-radius: 7px; border: none; background: #6366f1; color: #fff; font-family: 'Outfit',sans-serif; font-size: .77rem; font-weight: 700; }
-.modal-ok:hover { background: #4f46e5; }
-
-/* =============================================
-   SAVE INDICATOR
-============================================= */
-#saveInd {
-  position: fixed;
-  bottom: 18px; right: 18px;
-  background: #111;
-  color: #4ade80;
-  padding: 7px 13px;
-  border-radius: 9px;
-  font-family: 'Outfit', sans-serif;
-  font-size: .72rem;
-  font-weight: 700;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity .3s;
-  pointer-events: none;
-  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  padding: 2px 8px;
+  background: transparent;
+  border: 1px solid #e05555;
+  border-radius: 6px;
+  color: #e05555;
+  font-size: 0.7rem;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: all 0.15s;
 }
 
-/* =============================================
-   PRINT SIZE CLASSES
-============================================= */
-/* KECIL — isian sedikit, font besar */
-body.print-kecil .cv-name     { font-size: 3.2rem !important; }
-body.print-kecil .cv-role     { font-size: 1rem !important; letter-spacing: 3.5px !important; }
-body.print-kecil .cv-about    { font-size: 1.1rem !important; line-height: 2 !important; }
-body.print-kecil .s-ttl       { font-size: 0.88rem !important; }
-body.print-kecil .sk-name     { font-size: 1rem !important; }
-body.print-kecil .s-tag       { font-size: 0.9rem !important; padding: 6px 13px !important; }
-body.print-kecil .lg-name     { font-size: 1rem !important; }
-body.print-kecil .lg-lv       { font-size: 0.86rem !important; }
-body.print-kecil .ac-txt      { font-size: 0.95rem !important; }
-body.print-kecil .m-ttl       { font-size: 1.3rem !important; margin-bottom: 16px !important; }
-body.print-kecil .e-title     { font-size: 1.1rem !important; }
-body.print-kecil .e-org       { font-size: 0.95rem !important; }
-body.print-kecil .e-date      { font-size: 0.88rem !important; }
-body.print-kecil .e-desc      { font-size: 1rem !important; line-height: 2 !important; }
-body.print-kecil .contact-row { font-size: 0.92rem !important; }
-body.print-kecil .hd-left     { padding: 36px 20px 28px !important; }
-body.print-kecil .hd-right    { padding: 36px 36px 28px 28px !important; }
-body.print-kecil .cv-side     { padding: 30px 20px 36px !important; }
-body.print-kecil .cv-main     { padding: 30px 36px 36px 28px !important; }
-body.print-kecil .s-sec       { margin-bottom: 30px !important; }
-body.print-kecil .m-sec       { margin-bottom: 26px !important; }
-body.print-kecil .entry       { margin-bottom: 20px !important; }
+.delete-section-btn:hover { background: #e05555; color: #fff; }
+body.edit-mode .delete-section-btn { display: inline-flex; }
 
-/* NORMAL — isian sedang */
-body.print-normal .cv-name    { font-size: 2.8rem !important; }
-body.print-normal .cv-role    { font-size: 0.9rem !important; letter-spacing: 3px !important; }
-body.print-normal .cv-about   { font-size: 1rem !important; line-height: 1.9 !important; }
-body.print-normal .s-ttl      { font-size: 0.78rem !important; }
-body.print-normal .sk-name    { font-size: 0.92rem !important; }
-body.print-normal .s-tag      { font-size: 0.82rem !important; padding: 5px 11px !important; }
-body.print-normal .lg-name    { font-size: 0.92rem !important; }
-body.print-normal .lg-lv      { font-size: 0.8rem !important; }
-body.print-normal .ac-txt     { font-size: 0.88rem !important; }
-body.print-normal .m-ttl      { font-size: 1.15rem !important; margin-bottom: 14px !important; }
-body.print-normal .e-title    { font-size: 1rem !important; }
-body.print-normal .e-org      { font-size: 0.88rem !important; }
-body.print-normal .e-date     { font-size: 0.82rem !important; }
-body.print-normal .e-desc     { font-size: 0.9rem !important; line-height: 1.8 !important; }
-body.print-normal .contact-row{ font-size: 0.85rem !important; }
-body.print-normal .hd-left    { padding: 32px 18px 24px !important; }
-body.print-normal .hd-right   { padding: 32px 32px 24px 24px !important; }
-body.print-normal .cv-side    { padding: 26px 18px 32px !important; }
-body.print-normal .cv-main    { padding: 26px 32px 32px 24px !important; }
-body.print-normal .s-sec      { margin-bottom: 26px !important; }
-body.print-normal .m-sec      { margin-bottom: 22px !important; }
-body.print-normal .entry      { margin-bottom: 16px !important; }
-
-/* BANYAK — isian banyak, font kecil */
-body.print-banyak .cv-name    { font-size: 2rem !important; }
-body.print-banyak .cv-role    { font-size: 0.72rem !important; letter-spacing: 2px !important; }
-body.print-banyak .cv-about   { font-size: 0.76rem !important; line-height: 1.6 !important; }
-body.print-banyak .s-ttl      { font-size: 0.62rem !important; }
-body.print-banyak .sk-name    { font-size: 0.76rem !important; }
-body.print-banyak .s-tag      { font-size: 0.68rem !important; padding: 3px 8px !important; }
-body.print-banyak .lg-name    { font-size: 0.76rem !important; }
-body.print-banyak .lg-lv      { font-size: 0.66rem !important; }
-body.print-banyak .ac-txt     { font-size: 0.72rem !important; }
-body.print-banyak .m-ttl      { font-size: 0.9rem !important; margin-bottom: 9px !important; }
-body.print-banyak .e-title    { font-size: 0.82rem !important; }
-body.print-banyak .e-org      { font-size: 0.72rem !important; }
-body.print-banyak .e-date     { font-size: 0.66rem !important; }
-body.print-banyak .e-desc     { font-size: 0.74rem !important; line-height: 1.55 !important; }
-body.print-banyak .contact-row{ font-size: 0.7rem !important; }
-body.print-banyak .hd-left    { padding: 20px 14px 16px !important; }
-body.print-banyak .hd-right   { padding: 20px 24px 16px 18px !important; }
-body.print-banyak .cv-side    { padding: 16px 14px 20px !important; }
-body.print-banyak .cv-main    { padding: 16px 22px 20px 16px !important; }
-body.print-banyak .s-sec      { margin-bottom: 16px !important; }
-body.print-banyak .m-sec      { margin-bottom: 13px !important; }
-body.print-banyak .entry      { margin-bottom: 9px !important; }
-
-/* =============================================
-   PRINT — A4
-============================================= */
-@media print {
-  *, *::before, *::after {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
-  }
-
-  @page { size: A4 portrait; margin: 8mm; }
-
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: white !important;
-    min-height: unset !important;
-    display: block !important;
-    width: 100% !important;
-  }
-
-  .toolbar, #saveInd, .modal-bg, .print-modal-bg,
-  .add-btn, .add-sec, .d-btn, .e-del,
-  .sec-del, .c-del, .photo-sizer, .range-sl,
-  #lockScreen { display: none !important; }
-
-  [contenteditable] { outline: none !important; }
-
-  .cv {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-  }
-
-  .m-sec { page-break-inside: avoid; }
-  .entry { page-break-inside: avoid; }
-  .cv-hd { page-break-inside: avoid; }
-}
-
-/* =============================================
-   RESPONSIVE
-============================================= */
-@media (max-width: 560px) {
-  .cv-hd { flex-direction: column; }
-  .hd-left { width: 100%; flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--ln); padding: 18px 16px; }
-  .hd-right { padding: 16px; }
-  .cv-body { flex-direction: column; }
-  .cv-side { width: 100%; border-right: none; border-bottom: 1px solid var(--ln); }
-  .cv-name { font-size: 1.8rem; }
-  .cv-ft { flex-direction: column; gap: 4px; text-align: center; padding: 10px 16px; }
-  .ft-n { margin-left: 0; }
-  .tema-opts { gap: 4px; }
-  .topt { font-size: .65rem; padding: 4px 8px; }
-}
-
-/* ── PRINT SIZE MODAL ── */
-.print-modal-bg {
+/* ============================================================
+   PDF MODAL
+============================================================ */
+.modal-overlay {
+  display: none;
   position: fixed; inset: 0;
-  background: rgba(0,0,0,.55);
-  backdrop-filter: blur(5px);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.print-modal-bg.open { display: flex; }
-
-.print-modal {
-  background: #fff;
-  border-radius: 20px;
-  padding: 28px 24px;
-  max-width: 340px;
-  width: 100%;
-  box-shadow: 0 20px 60px rgba(0,0,0,.3);
-  text-align: center;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+  z-index: 200;
 }
 
-.print-modal h3 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
-  font-weight: 800;
-  color: #111;
-  margin-bottom: 6px;
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 36px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: var(--shadow-lg);
+  animation: boxIn 0.3s;
 }
 
-.print-modal p {
-  font-size: .78rem;
-  color: #888;
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--primary);
   margin-bottom: 20px;
-  line-height: 1.5;
 }
 
-.print-opts {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-
-.print-opt {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 13px 16px;
-  border-radius: 12px;
-  border: 2px solid #e5e7eb;
-  background: #f9fafb;
-  cursor: pointer;
-  transition: all .18s;
-  text-align: left;
-}
-.print-opt:hover { border-color: #6366f1; background: #eef2ff; }
-.print-opt.sel { border-color: #6366f1; background: #eef2ff; }
-
-.print-opt-icon { font-size: 1.4rem; flex-shrink: 0; }
-.print-opt-info { flex: 1; }
-.print-opt-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: .85rem;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 2px;
-}
-.print-opt-desc {
-  font-size: .72rem;
-  color: #888;
-}
-
-.print-go {
-  width: 100%;
-  padding: 13px;
-  border-radius: 12px;
-  border: none;
-  background: #111;
-  color: #fff;
-  font-family: 'Outfit', sans-serif;
-  font-size: .88rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all .2s;
-}
-.print-go:hover { background: #333; }
-
-.print-cancel {
-  margin-top: 10px;
-  background: none;
-  border: none;
-  font-family: 'Outfit', sans-serif;
-  font-size: .78rem;
-  color: #aaa;
-  cursor: pointer;
-}
-
-/* ── LOCK SCREEN ── */
-#lockScreen {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  font-family: 'Outfit', sans-serif;
-}
-
-.lock-box {
-  background: rgba(255,255,255,.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 24px;
-  padding: 40px 32px;
-  max-width: 360px;
-  width: 100%;
-  text-align: center;
-}
-
-.lock-icon {
-  font-size: 3rem;
-  margin-bottom: 16px;
-  animation: lockBounce .6s ease;
-}
-
-@keyframes lockBounce {
-  0%   { transform: scale(0); opacity: 0; }
-  70%  { transform: scale(1.1); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.lock-title {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 6px;
-  letter-spacing: -.3px;
-}
-
-.lock-sub {
-  font-size: .82rem;
-  color: rgba(255,255,255,.55);
-  margin-bottom: 28px;
-  line-height: 1.6;
-}
-
-.lock-input-wrap {
-  position: relative;
-  margin-bottom: 14px;
-}
-
-.lock-input {
-  width: 100%;
-  padding: 14px 48px 14px 18px;
-  border-radius: 12px;
-  border: 2px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.08);
-  color: #fff;
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  outline: none;
-  transition: border .2s;
-  text-align: center;
-}
-
-.lock-input::placeholder {
-  color: rgba(255,255,255,.3);
-  letter-spacing: 1px;
-  text-transform: none;
-  font-weight: 400;
-  font-size: .85rem;
-}
-
-.lock-input:focus { border-color: rgba(255,255,255,.4); }
-.lock-input.error { border-color: #ef4444; animation: shake .3s; }
-
-@keyframes shake {
-  0%,100% { transform: translateX(0); }
-  25%      { transform: translateX(-8px); }
-  75%      { transform: translateX(8px); }
-}
-
-.lock-btn {
-  width: 100%;
+.pdf-option {
+  display: flex; align-items: center; gap: 12px;
   padding: 14px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg, #6366f1, #a855f7);
-  color: #fff;
-  font-family: 'Outfit', sans-serif;
-  font-size: .92rem;
-  font-weight: 800;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   cursor: pointer;
-  transition: all .2s;
-  letter-spacing: .5px;
+  margin-bottom: 8px;
+  transition: all 0.15s;
 }
 
-.lock-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(99,102,241,.4); }
-.lock-btn:active { transform: translateY(0); }
-
-.lock-err {
-  font-size: .76rem;
-  color: #f87171;
-  margin-top: 10px;
-  min-height: 18px;
-  font-weight: 600;
+.pdf-option:hover, .pdf-option.selected {
+  border-color: var(--accent);
+  background: var(--tag-bg);
 }
 
-.lock-footer {
-  margin-top: 24px;
-  font-size: .7rem;
-  color: rgba(255,255,255,.25);
+.pdf-option-icon { font-size: 1.4rem; }
+.pdf-option-text { font-size: 0.85rem; }
+.pdf-option-title { font-weight: 600; color: var(--primary); }
+.pdf-option-sub { color: var(--text-muted); font-size: 0.75rem; }
+
+.modal-btns { display: flex; gap: 10px; margin-top: 20px; }
+
+.modal-btn {
+  flex: 1; padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
 }
 
-.lock-attempts {
-  font-size: .72rem;
-  color: rgba(255,255,255,.35);
+.modal-btn.primary {
+  background: var(--primary);
+  color: var(--surface);
+  border-color: var(--primary);
+}
+
+.modal-btn:hover { opacity: 0.85; }
+
+/* ============================================================
+   SAVE DIALOG
+============================================================ */
+.save-dialog {
+  display: none;
+  position: fixed;
+  bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow-lg);
+  z-index: 150;
+  min-width: 300px;
+  animation: slideUp 0.3s;
+  text-align: center;
+}
+
+@keyframes slideUp { from { transform: translateX(-50%) translateY(20px); opacity: 0 } to { transform: translateX(-50%) translateY(0); opacity: 1 } }
+
+.save-dialog.open { display: block; }
+.save-dialog p { font-size: 0.88rem; color: var(--text); margin-bottom: 14px; font-weight: 500; }
+.save-dialog-btns { display: flex; gap: 8px; justify-content: center; }
+
+.sd-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.sd-btn.primary { background: var(--primary); color: var(--surface); border-color: var(--primary); }
+.sd-btn:hover { opacity: 0.8; }
+
+/* ============================================================
+   PRINT
+============================================================ */
+@media print {
+  #toolbar, #access-overlay, .modal-overlay, .save-dialog, .delete-btn, .add-btn, .add-section-btn, .delete-section-btn, .skill-slider, #photo-size-slider { display: none !important; }
+  body { margin: 0; }
+  #cv-wrapper { margin: 0; padding: 0; }
+  #cv-page { width: 100%; max-width: 100%; border-radius: 0; box-shadow: none; }
+}
+
+/* ============================================================
+   TOAST
+============================================================ */
+#toast {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+  background: var(--primary); color: var(--surface);
+  padding: 8px 20px; border-radius: 30px;
+  font-size: 0.8rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 300;
+}
+#toast.show { opacity: 1; }
+
+/* ============================================================
+   SECTION PRESET MODAL
+============================================================ */
+#section-modal .preset-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  margin-bottom: 16px;
+}
+
+.preset-card {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.15s;
+}
+
+.preset-card:hover, .preset-card.selected { border-color: var(--accent); background: var(--tag-bg); }
+
+.custom-name-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
   margin-top: 8px;
+}
+
+.custom-name-input:focus { border-color: var(--accent); }
+
+/* Responsive */
+@media (max-width: 700px) {
+  #cv-page { grid-template-columns: 1fr; }
+  #cv-sidebar { padding: 24px 20px; }
+  #cv-main { padding: 24px 20px; }
 }
 </style>
 </head>
-<body class="tm">
+<body>
 
-<!-- =============================================
-     LOCK SCREEN
-============================================= -->
-<div id="lockScreen">
-  <div class="lock-box">
-    <div class="lock-icon">🔐</div>
-    <div class="lock-title">CV Premium v4</div>
-    <div class="lock-sub">Masukkan kode akses untuk membuka template premium ini</div>
-    <div class="lock-input-wrap">
-      <input
-        class="lock-input"
-        id="lockInput"
-        type="text"
-        placeholder="Masukkan kode akses..."
-        maxlength="20"
-        autocomplete="off"
-        onkeydown="if(event.key==='Enter') checkCode()"
-      />
-    </div>
-    <button class="lock-btn" onclick="checkCode()">🔓 Buka Sekarang</button>
-    <div class="lock-err" id="lockErr"></div>
-    <div class="lock-attempts" id="lockAttempts"></div>
-    <div class="lock-footer">© Adhazone Premium Templates</div>
+<!-- ACCESS OVERLAY -->
+<div id="access-overlay">
+  <div class="access-box">
+    <div class="access-logo">CV Premium</div>
+    <div class="access-sub">ADHAZONE — v4.0</div>
+    <input type="text" id="access-input" class="access-input" placeholder="MASUKKAN KODE AKSES" maxlength="20" autocomplete="off" />
+    <button class="access-btn" onclick="checkAccess()">✦ Buka CV</button>
+    <div class="access-error" id="access-error"></div>
   </div>
 </div>
 
-<!-- =============================================
-     TOOLBAR
-============================================= -->
-<div class="toolbar">
-  <div class="tb-row">
-    <div class="tb-lbl">✦ CV Premium v4</div>
-    <div class="tb-btns">
-      <button class="tbtn danger" onclick="resetCV()">🗑️ Reset</button>
-      <button class="tbtn" id="emojiBtn" onclick="toggleEmoji()">😊 Emoji</button>
-      <button class="tbtn" id="editBtn" onclick="toggleEdit()">✏️ Edit</button>
-      <button class="tbtn pdf" onclick="openPrint()">🖨️ PDF</button>
-    </div>
-  </div>
-  <div class="tema-bar">
-    <div class="tema-lbl">🎨 Tema</div>
-    <div class="tema-opts">
-      <button class="topt tm sel" onclick="setTema('tm',this)"><div class="tdot" style="background:#111"></div>Modern</button>
-      <button class="topt tw" onclick="setTema('tw',this)"><div class="tdot" style="background:#8b5e3c"></div>Warm</button>
-      <button class="topt td" onclick="setTema('td',this)"><div class="tdot" style="background:#e8c97a"></div>Dark</button>
-      <button class="topt te" onclick="setTema('te',this)"><div class="tdot" style="background:#c41e3a"></div>Editorial</button>
-      <button class="topt ta" onclick="setTema('ta',this)"><div class="tdot" style="background:#f0b429"></div>Art Deco</button>
-      <button class="topt tr" onclick="setTema('tr',this)"><div class="tdot" style="background:#c8860a"></div>Retro</button>
-    </div>
-  </div>
+<!-- TOOLBAR -->
+<div id="toolbar">
+  <span class="tb-label">Tema</span>
+  <button class="tb-theme-btn active" data-theme="modern" title="Modern" style="background:linear-gradient(135deg,#1a1a2e,#c9a84c)" onclick="setTheme('modern',this)"></button>
+  <button class="tb-theme-btn" data-theme="warm" title="Warm" style="background:linear-gradient(135deg,#3d1f00,#e07b39)" onclick="setTheme('warm',this)"></button>
+  <button class="tb-theme-btn" data-theme="dark" title="Dark" style="background:linear-gradient(135deg,#0f0f14,#7c6ee0)" onclick="setTheme('dark',this)"></button>
+  <button class="tb-theme-btn" data-theme="editorial" title="Editorial" style="background:linear-gradient(135deg,#111111,#d63031)" onclick="setTheme('editorial',this)"></button>
+  <button class="tb-theme-btn" data-theme="artdeco" title="Art Deco" style="background:linear-gradient(135deg,#1c1507,#b8952a)" onclick="setTheme('artdeco',this)"></button>
+  <button class="tb-theme-btn" data-theme="retro" title="Retro" style="background:linear-gradient(135deg,#2d2016,#e8902a)" onclick="setTheme('retro',this)"></button>
+  <div class="tb-divider"></div>
+  <button class="tb-btn" id="edit-btn" onclick="toggleEdit()">✏️ Edit</button>
+  <button class="tb-btn" id="emoji-btn" onclick="toggleEmoji()">😊 Emoji</button>
+  <button class="tb-btn" onclick="confirmReset()">🗑️ Reset</button>
+  <button class="tb-btn" onclick="openPdfModal()">🖨️ PDF</button>
 </div>
 
-<!-- =============================================
-     CV
-============================================= -->
-<div class="cv" id="cvDoc">
+<!-- MAIN CV -->
+<div id="cv-wrapper">
+<div id="cv-page">
 
-  <!-- HEADER -->
-  <div class="cv-hd">
+  <!-- SIDEBAR -->
+  <div id="cv-sidebar">
 
-    <!-- LEFT -->
-    <div class="hd-left">
-      <!-- Photo -->
-      <div class="photo-outer">
-        <div class="photo-box" id="photoBox" onclick="document.getElementById('photoInput').click()">
-          <span id="photoIcon">👤</span>
-          <img id="photoImg" alt="foto"/>
-          <div class="photo-ov">📷 Ganti<br/>Foto</div>
-        </div>
+    <!-- PHOTO -->
+    <div class="sidebar-section photo-wrap">
+      <div class="photo-circle" id="photo-circle" onclick="triggerPhoto()">
+        <span class="photo-placeholder">👤</span>
       </div>
-      <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)"/>
-
-      <!-- Photo sizer -->
-      <div class="photo-sizer">
-        <div class="sizer-lbl">📐 Ukuran Foto</div>
-        <input type="range" class="sizer-input" id="photoSizer" min="50" max="130" value="80" oninput="resizePhoto(this.value)"/>
-      </div>
-
-      <!-- Contacts -->
-      <div class="contacts" id="contactList">
-        <div class="contact-row"><div class="c-ic">✉</div><span contenteditable="false">emailkamu [at] gmail.com</span><button class="c-del" onclick="this.parentElement.remove()">✕</button></div>
-        <div class="contact-row"><div class="c-ic">📱</div><span contenteditable="false">+62 8xx-xxxx-xxxx</span><button class="c-del" onclick="this.parentElement.remove()">✕</button></div>
-        <div class="contact-row"><div class="c-ic">📍</div><span contenteditable="false">Kota, Provinsi</span><button class="c-del" onclick="this.parentElement.remove()">✕</button></div>
-        <div class="contact-row"><div class="c-ic">🔗</div><span contenteditable="false">linkedin.com/in/namakamu</span><button class="c-del" onclick="this.parentElement.remove()">✕</button></div>
-      </div>
-      <button class="add-btn" onclick="addContact()">＋ Tambah Kontak</button>
+      <input type="file" id="photo-input" accept="image/*" style="display:none" onchange="loadPhoto(event)">
+      <input type="range" id="photo-size-slider" min="60" max="160" value="120" oninput="resizePhoto(this.value)">
     </div>
 
-    <!-- RIGHT -->
-    <div class="hd-right">
-      <div class="cv-name" contenteditable="false">Nama <em>Lengkap</em><br/>Kamu</div>
-      <div class="cv-role" contenteditable="false">Jabatan / Profesi Kamu</div>
-      <div class="cv-about" contenteditable="false">Tulis ringkasan singkat tentang dirimu. IPK, semangat, dan keunggulanmu dalam <strong>2–3 kalimat</strong>.</div>
+    <!-- KONTAK -->
+    <div class="sidebar-section" id="section-kontak">
+      <div class="sidebar-section-header">
+        <span class="sidebar-title" data-key="title-kontak" contenteditable="false">KONTAK</span>
+        <button class="delete-section-btn" onclick="deleteSection('section-kontak')">✕</button>
+      </div>
+      <div id="kontak-items">
+        <div class="contact-item" data-id="c1" style="position:relative">
+          <span class="contact-icon">📧</span>
+          <span contenteditable="false" data-key="email">adha@email.com</span>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+        <div class="contact-item" data-id="c2" style="position:relative">
+          <span class="contact-icon">📱</span>
+          <span contenteditable="false" data-key="phone">+62 812 3456 7890</span>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+        <div class="contact-item" data-id="c3" style="position:relative">
+          <span class="contact-icon">📍</span>
+          <span contenteditable="false" data-key="city">Jakarta, Indonesia</span>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+        <div class="contact-item" data-id="c4" style="position:relative">
+          <span class="contact-icon">🔗</span>
+          <span contenteditable="false" data-key="linkedin">linkedin.com/in/adha</span>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+      </div>
+      <button class="add-btn" onclick="addContactItem()">＋ Tambah</button>
     </div>
-  </div>
 
-  <!-- BODY -->
-  <div class="cv-body">
-
-    <!-- SIDEBAR -->
-    <div class="cv-side">
-
-      <!-- Kompetensi -->
-      <div class="s-sec" id="ss-sk">
-        <div class="s-ttl"><span class="emoji-s">⚡</span> <span class="s-ttl-txt" contenteditable="false">Kompetensi</span> <button class="sec-del" onclick="delSec('ss-sk')">✕ Hapus</button></div>
-        <div id="skList">
-          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Rancang Pembelajaran</span><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div><input type="range" class="range-sl" min="10" max="100" value="90" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Kurikulum Merdeka</span><div class="sk-bar"><div class="sk-fill" style="width:88%"></div></div><input type="range" class="range-sl" min="10" max="100" value="88" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Manajemen Kelas</span><div class="sk-bar"><div class="sk-fill" style="width:82%"></div></div><input type="range" class="range-sl" min="10" max="100" value="82" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Asesmen & Evaluasi</span><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div><input type="range" class="range-sl" min="10" max="100" value="80" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Media Pembelajaran</span><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div><input type="range" class="range-sl" min="10" max="100" value="85" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-        </div>
-        <button class="add-btn" onclick="addSkill()">＋ Tambah</button>
+    <!-- SKILLS -->
+    <div class="sidebar-section" id="section-skills">
+      <div class="sidebar-section-header">
+        <span class="sidebar-title" data-key="title-skills" contenteditable="false">KOMPETENSI</span>
+        <button class="delete-section-btn" onclick="deleteSection('section-skills')">✕</button>
       </div>
-
-      <!-- Tools -->
-      <div class="s-sec" id="ss-tl">
-        <div class="s-ttl"><span class="emoji-s">🛠️</span> <span class="s-ttl-txt" contenteditable="false">Tools</span> <button class="sec-del" onclick="delSec('ss-tl')">✕ Hapus</button></div>
-        <div class="tags-wrap" id="tlList">
-          <span class="s-tag"><span contenteditable="false">Canva</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
-          <span class="s-tag"><span contenteditable="false">Quizizz</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
-          <span class="s-tag"><span contenteditable="false">G. Classroom</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
-          <span class="s-tag"><span contenteditable="false">Padlet</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
-          <span class="s-tag"><span contenteditable="false">Figma</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
-        </div>
-        <button class="add-btn" onclick="addTool()">＋ Tambah</button>
-      </div>
-
-      <!-- Bahasa -->
-      <div class="s-sec" id="ss-lg">
-        <div class="s-ttl"><span class="emoji-s">🌐</span> <span class="s-ttl-txt" contenteditable="false">Bahasa</span> <button class="sec-del" onclick="delSec('ss-lg')">✕ Hapus</button></div>
-        <div id="lgList">
-          <div class="lg-row"><div class="lg-wrap"><div class="lg-name" contenteditable="false">Bahasa Indonesia</div><div class="lg-lv" contenteditable="false">Native</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><input type="range" class="range-sl" min="10" max="100" value="100" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-          <div class="lg-row"><div class="lg-wrap"><div class="lg-name" contenteditable="false">Bahasa Inggris</div><div class="lg-lv" contenteditable="false">Intermediate</div><div class="sk-bar"><div class="sk-fill" style="width:70%"></div></div><input type="range" class="range-sl" min="10" max="100" value="70" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-        </div>
-        <button class="add-btn" onclick="addLang()">＋ Tambah</button>
-      </div>
-
-      <!-- Penghargaan -->
-      <div class="s-sec" id="ss-ac">
-        <div class="s-ttl"><span class="emoji-s">🏆</span> <span class="s-ttl-txt" contenteditable="false">Penghargaan</span> <button class="sec-del" onclick="delSec('ss-ac')">✕ Hapus</button></div>
-        <div id="acList">
-          <div class="ac-row"><div class="ac-ic" contenteditable="false">🥇</div><span class="ac-txt" contenteditable="false">Penghargaan 1</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-          <div class="ac-row"><div class="ac-ic" contenteditable="false">🎓</div><span class="ac-txt" contenteditable="false">Penghargaan 2</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-          <div class="ac-row"><div class="ac-ic" contenteditable="false">⭐</div><span class="ac-txt" contenteditable="false">Penghargaan 3</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
-        </div>
-        <button class="add-btn" onclick="addAch()">＋ Tambah</button>
-      </div>
-
-    </div><!-- end sidebar -->
-
-    <!-- MAIN -->
-    <div class="cv-main" id="cvMain">
-
-      <!-- Pendidikan -->
-      <div class="m-sec" id="ms-edu">
-        <div class="m-ttl"><span class="emoji-s">🎓</span> <span class="m-ttl-txt" contenteditable="false">Pendidikan</span> <button class="sec-del" onclick="delMain('ms-edu')">✕ Hapus</button><div class="m-ttl-line"></div></div>
-        <div id="eduList">
-          <div class="entry">
-            <button class="e-del" onclick="delEntry(this)">✕</button>
-            <div class="e-top"><div class="e-title" contenteditable="false">S1 Nama Jurusan Kamu</div><div class="e-date" contenteditable="false">20xx – 20xx</div></div>
-            <div class="e-org" contenteditable="false">Nama Universitas · IPK 0.00</div>
-            <div class="e-desc" contenteditable="false">Tulis skripsi atau prestasi akademik kamu di sini.</div>
+      <div id="skills-items">
+        <div class="skill-item" style="position:relative">
+          <div class="skill-name">
+            <span contenteditable="false">UI/UX Design</span>
+            <span class="skill-pct">90%</span>
           </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+          <input type="range" class="skill-slider" min="0" max="100" value="90" oninput="updateSkillBar(this)">
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
         </div>
-        <button class="add-btn" onclick="addEntry('eduList')">＋ Tambah Item</button>
-      </div>
-
-      <!-- Pengalaman -->
-      <div class="m-sec" id="ms-exp">
-        <div class="m-ttl"><span class="emoji-s">💼</span> <span class="m-ttl-txt" contenteditable="false">Pengalaman</span> <button class="sec-del" onclick="delMain('ms-exp')">✕ Hapus</button><div class="m-ttl-line"></div></div>
-        <div id="expList">
-          <div class="entry">
-            <button class="e-del" onclick="delEntry(this)">✕</button>
-            <div class="e-top"><div class="e-title" contenteditable="false">Nama Posisi / Jabatan</div><div class="e-date" contenteditable="false">Bln Thn – Bln Thn</div></div>
-            <div class="e-org" contenteditable="false">Nama Instansi, Kota</div>
-            <div class="e-desc" contenteditable="false">Deskripsikan tugas, pencapaian, atau kontribusi kamu.</div>
+        <div class="skill-item" style="position:relative">
+          <div class="skill-name">
+            <span contenteditable="false">React / Next.js</span>
+            <span class="skill-pct">85%</span>
           </div>
-          <div class="entry">
-            <button class="e-del" onclick="delEntry(this)">✕</button>
-            <div class="e-top"><div class="e-title" contenteditable="false">Nama Posisi / Jabatan</div><div class="e-date" contenteditable="false">Bln Thn – Bln Thn</div></div>
-            <div class="e-org" contenteditable="false">Nama Instansi, Kota</div>
-            <div class="e-desc" contenteditable="false">Deskripsikan tugas dan pencapaian kamu.</div>
-          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+          <input type="range" class="skill-slider" min="0" max="100" value="85" oninput="updateSkillBar(this)">
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
         </div>
-        <button class="add-btn" onclick="addEntry('expList')">＋ Tambah Item</button>
-      </div>
-
-      <!-- Organisasi -->
-      <div class="m-sec" id="ms-org">
-        <div class="m-ttl"><span class="emoji-s">🤝</span> <span class="m-ttl-txt" contenteditable="false">Organisasi</span> <button class="sec-del" onclick="delMain('ms-org')">✕ Hapus</button><div class="m-ttl-line"></div></div>
-        <div id="orgList">
-          <div class="entry">
-            <button class="e-del" onclick="delEntry(this)">✕</button>
-            <div class="e-top"><div class="e-title" contenteditable="false">Jabatan di Organisasi</div><div class="e-date" contenteditable="false">20xx – 20xx</div></div>
-            <div class="e-org" contenteditable="false">Nama Organisasi · Nama Universitas</div>
-            <div class="e-desc" contenteditable="false">Deskripsikan peran dan kontribusi kamu.</div>
+        <div class="skill-item" style="position:relative">
+          <div class="skill-name">
+            <span contenteditable="false">Figma</span>
+            <span class="skill-pct">88%</span>
           </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
+          <input type="range" class="skill-slider" min="0" max="100" value="88" oninput="updateSkillBar(this)">
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
         </div>
-        <button class="add-btn" onclick="addEntry('orgList')">＋ Tambah Item</button>
-      </div>
-
-      <!-- Sertifikasi -->
-      <div class="m-sec" id="ms-cert">
-        <div class="m-ttl"><span class="emoji-s">📜</span> <span class="m-ttl-txt" contenteditable="false">Sertifikasi</span> <button class="sec-del" onclick="delMain('ms-cert')">✕ Hapus</button><div class="m-ttl-line"></div></div>
-        <div id="certList">
-          <div class="entry">
-            <button class="e-del" onclick="delEntry(this)">✕</button>
-            <div class="e-top"><div class="e-title" contenteditable="false">Nama Sertifikasi / Pelatihan</div><div class="e-date" contenteditable="false">Tahun</div></div>
+        <div class="skill-item" style="position:relative">
+          <div class="skill-name">
+            <span contenteditable="false">Python</span>
+            <span class="skill-pct">75%</span>
           </div>
-          <div class="entry">
-            <button class="e-del" onclick="delEntry(this)">✕</button>
-            <div class="e-top"><div class="e-title" contenteditable="false">Nama Sertifikasi / Pelatihan</div><div class="e-date" contenteditable="false">Tahun</div></div>
-          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
+          <input type="range" class="skill-slider" min="0" max="100" value="75" oninput="updateSkillBar(this)">
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
         </div>
-        <button class="add-btn" onclick="addEntry('certList')">＋ Tambah Item</button>
       </div>
-
-      <button class="add-sec" onclick="openModal()">✦ Tambah Section Baru</button>
-
-    </div><!-- end main -->
-  </div><!-- end body -->
-
-  <!-- FOOTER -->
-  <div class="cv-ft">
-    <div class="ft-q" contenteditable="false">"Tulis kata motivasi atau moto hidupmu di sini."</div>
-    <div class="ft-n" contenteditable="false">Nama Kamu · Tahun</div>
-  </div>
-
-</div><!-- end cv -->
-
-<!-- MODAL -->
-<div class="modal-bg" id="modalBg">
-  <div class="modal">
-    <h3>✦ Tambah Section Baru</h3>
-    <p>Pilih preset atau ketik nama sendiri</p>
-    <div class="presets">
-      <button class="preset" onclick="pickP('🏆 Prestasi')">🏆 Prestasi</button>
-      <button class="preset" onclick="pickP('📂 Portofolio')">📂 Portofolio</button>
-      <button class="preset" onclick="pickP('📝 Publikasi')">📝 Publikasi</button>
-      <button class="preset" onclick="pickP('❤️ Volunteer')">❤️ Volunteer</button>
-      <button class="preset" onclick="pickP('🌐 Proyek')">🌐 Proyek</button>
-      <button class="preset" onclick="pickP('🎮 Hobi')">🎮 Hobi</button>
-      <button class="preset" onclick="pickP('👥 Referensi')">👥 Referensi</button>
-      <button class="preset" onclick="pickP('💻 Kursus')">💻 Kursus</button>
-      <button class="preset" onclick="pickP('🔬 Penelitian')">🔬 Penelitian</button>
+      <button class="add-btn" onclick="addSkillItem()">＋ Tambah</button>
     </div>
-    <input id="secInput" placeholder="Atau ketik nama section..."/>
+
+    <!-- BAHASA -->
+    <div class="sidebar-section" id="section-bahasa">
+      <div class="sidebar-section-header">
+        <span class="sidebar-title" data-key="title-bahasa" contenteditable="false">BAHASA</span>
+        <button class="delete-section-btn" onclick="deleteSection('section-bahasa')">✕</button>
+      </div>
+      <div id="bahasa-items">
+        <div class="skill-item" style="position:relative">
+          <div class="skill-name">
+            <span contenteditable="false">Indonesia</span>
+            <span class="skill-pct">100%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div>
+          <input type="range" class="skill-slider" min="0" max="100" value="100" oninput="updateSkillBar(this)">
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+        <div class="skill-item" style="position:relative">
+          <div class="skill-name">
+            <span contenteditable="false">English</span>
+            <span class="skill-pct">80%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+          <input type="range" class="skill-slider" min="0" max="100" value="80" oninput="updateSkillBar(this)">
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+      </div>
+      <button class="add-btn" onclick="addLangItem()">＋ Tambah</button>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="sidebar-section" id="section-tools">
+      <div class="sidebar-section-header">
+        <span class="sidebar-title" data-key="title-tools" contenteditable="false">TOOLS</span>
+        <button class="delete-section-btn" onclick="deleteSection('section-tools')">✕</button>
+      </div>
+      <div id="tools-items" style="display:flex;flex-wrap:wrap;gap:4px">
+        <span class="tag-item" contenteditable="false" style="position:relative">Figma<button class="delete-btn" onclick="deleteItem(this)">✕</button></span>
+        <span class="tag-item" contenteditable="false" style="position:relative">VS Code<button class="delete-btn" onclick="deleteItem(this)">✕</button></span>
+        <span class="tag-item" contenteditable="false" style="position:relative">Notion<button class="delete-btn" onclick="deleteItem(this)">✕</button></span>
+        <span class="tag-item" contenteditable="false" style="position:relative">Git<button class="delete-btn" onclick="deleteItem(this)">✕</button></span>
+        <span class="tag-item" contenteditable="false" style="position:relative">Slack<button class="delete-btn" onclick="deleteItem(this)">✕</button></span>
+      </div>
+      <button class="add-btn" onclick="addTagItem('tools-items')">＋ Tambah</button>
+    </div>
+
+    <!-- PENGHARGAAN -->
+    <div class="sidebar-section" id="section-awards">
+      <div class="sidebar-section-header">
+        <span class="sidebar-title" data-key="title-awards" contenteditable="false">PENGHARGAAN</span>
+        <button class="delete-section-btn" onclick="deleteSection('section-awards')">✕</button>
+      </div>
+      <div id="awards-items">
+        <div class="contact-item" style="position:relative">
+          <span class="contact-icon">🏆</span>
+          <span contenteditable="false">Best Designer Award 2024</span>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+        <div class="contact-item" style="position:relative">
+          <span class="contact-icon">🥇</span>
+          <span contenteditable="false">Hackathon Champion — StartupWeek</span>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+      </div>
+      <button class="add-btn" onclick="addAwardItem()">＋ Tambah</button>
+    </div>
+
+  </div><!-- /sidebar -->
+
+  <!-- MAIN -->
+  <div id="cv-main">
+
+    <div class="cv-header">
+      <div class="cv-name" contenteditable="false" data-key="name">Adha Rizky Pratama</div>
+      <div class="cv-profession" contenteditable="false" data-key="profession">UI/UX Designer & Frontend Developer</div>
+      <div class="cv-summary" contenteditable="false" data-key="summary">Profesional kreatif dengan 5+ tahun pengalaman merancang produk digital yang berpusat pada pengguna. Berpengalaman memimpin proyek dari riset hingga produksi, dengan keahlian kuat di prototyping, design systems, dan pengembangan frontend modern.</div>
+    </div>
+
+    <!-- PENGALAMAN -->
+    <div class="cv-section" id="main-section-exp">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-emoji">💼</span>
+          <span contenteditable="false" data-key="title-exp">Pengalaman Kerja</span>
+        </div>
+        <button class="delete-section-btn" onclick="deleteSection('main-section-exp')">✕</button>
+      </div>
+      <div id="exp-items">
+        <div class="entry" style="position:relative">
+          <div>
+            <div class="entry-title" contenteditable="false">Lead UI/UX Designer</div>
+            <div class="entry-sub" contenteditable="false">TechVenture Indonesia · Full-time</div>
+          </div>
+          <div class="entry-date" contenteditable="false">2022 — Skrg</div>
+          <div class="entry-desc" contenteditable="false">Memimpin tim desain 6 orang, membangun design system dari awal, meningkatkan konversi produk 34% melalui redesign berbasis riset pengguna.</div>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+        <div class="entry" style="position:relative">
+          <div>
+            <div class="entry-title" contenteditable="false">Frontend Developer</div>
+            <div class="entry-sub" contenteditable="false">Kreasi Digital · Kontrak</div>
+          </div>
+          <div class="entry-date" contenteditable="false">2020 — 2022</div>
+          <div class="entry-desc" contenteditable="false">Mengembangkan antarmuka React untuk 8 klien korporat, mengintegrasikan REST API, dan mengoptimalkan performa Lighthouse score hingga 95+.</div>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+        <div class="entry" style="position:relative">
+          <div>
+            <div class="entry-title" contenteditable="false">Junior Designer</div>
+            <div class="entry-sub" contenteditable="false">StudioKreatif · Freelance</div>
+          </div>
+          <div class="entry-date" contenteditable="false">2018 — 2020</div>
+          <div class="entry-desc" contenteditable="false">Mendesain brand identity, marketing materials, dan prototype mobile app untuk 15+ klien UMKM lokal.</div>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+      </div>
+      <button class="add-btn" onclick="addExpItem()">＋ Tambah Pengalaman</button>
+    </div>
+
+    <!-- PENDIDIKAN -->
+    <div class="cv-section" id="main-section-edu">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-emoji">🎓</span>
+          <span contenteditable="false" data-key="title-edu">Pendidikan</span>
+        </div>
+        <button class="delete-section-btn" onclick="deleteSection('main-section-edu')">✕</button>
+      </div>
+      <div id="edu-items">
+        <div class="entry" style="position:relative">
+          <div>
+            <div class="entry-title" contenteditable="false">S1 Desain Komunikasi Visual</div>
+            <div class="entry-sub" contenteditable="false">Universitas Indonesia · IPK 3.82</div>
+          </div>
+          <div class="entry-date" contenteditable="false">2014 — 2018</div>
+          <div class="entry-desc" contenteditable="false">Jurusan Desain Komunikasi Visual dengan fokus pada human-computer interaction dan branding digital.</div>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+      </div>
+      <button class="add-btn" onclick="addEduItem()">＋ Tambah Pendidikan</button>
+    </div>
+
+    <!-- ORGANISASI -->
+    <div class="cv-section" id="main-section-org">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-emoji">🤝</span>
+          <span contenteditable="false" data-key="title-org">Organisasi</span>
+        </div>
+        <button class="delete-section-btn" onclick="deleteSection('main-section-org')">✕</button>
+      </div>
+      <div id="org-items">
+        <div class="entry" style="position:relative">
+          <div>
+            <div class="entry-title" contenteditable="false">Ketua UKM Desain Grafis</div>
+            <div class="entry-sub" contenteditable="false">Universitas Indonesia</div>
+          </div>
+          <div class="entry-date" contenteditable="false">2016 — 2018</div>
+          <div class="entry-desc" contenteditable="false">Mengelola komunitas 80+ anggota, mengadakan workshop dan kompetisi desain tingkat nasional.</div>
+          <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+        </div>
+      </div>
+      <button class="add-btn" onclick="addOrgItem()">＋ Tambah Organisasi</button>
+    </div>
+
+    <!-- SERTIFIKASI -->
+    <div class="cv-section" id="main-section-cert">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="section-emoji">📜</span>
+          <span contenteditable="false" data-key="title-cert">Sertifikasi</span>
+        </div>
+        <button class="delete-section-btn" onclick="deleteSection('main-section-cert')">✕</button>
+      </div>
+      <div id="cert-items" style="display:flex;flex-wrap:wrap;gap:6px">
+        <span class="skill-tag" style="position:relative">Google UX Design<button class="delete-btn" onclick="deleteItem(this)">✕</button></span>
+        <span class="skill-tag" style="position:relative">AWS Cloud Practitioner<button class="delete-btn" onclick="deleteItem(this)">✕</button></span>
+        <span class="skill-tag" style="position:relative">Meta React Developer<button class="delete-btn" onclick="deleteItem(this)">✕</button></span>
+        <span class="skill-tag" style="position:relative">Figma Advanced<button class="delete-btn" onclick="deleteItem(this)">✕</button></span>
+      </div>
+      <button class="add-btn" onclick="addCertItem()">＋ Tambah Sertifikasi</button>
+    </div>
+
+    <!-- ADD NEW SECTION -->
+    <button class="add-section-btn" onclick="openSectionModal()">✦ Tambah Section Baru</button>
+
+    <!-- FOOTER -->
+    <div class="cv-footer">
+      <span contenteditable="false" data-key="footer">"Desain bukan sekadar tampilan — ia adalah cara kerja sesuatu terasa." — Steve Jobs</span>
+    </div>
+
+  </div><!-- /cv-main -->
+
+</div><!-- /cv-page -->
+</div><!-- /cv-wrapper -->
+
+<!-- PDF MODAL -->
+<div class="modal-overlay" id="pdf-modal">
+  <div class="modal-box">
+    <div class="modal-title">🖨️ Simpan PDF</div>
+    <div class="pdf-option selected" data-size="normal" onclick="selectPdf(this)">
+      <span class="pdf-option-icon">📋</span>
+      <div class="pdf-option-text">
+        <div class="pdf-option-title">Isian Normal</div>
+        <div class="pdf-option-sub">Font standar · 3–4 pengalaman</div>
+      </div>
+    </div>
+    <div class="pdf-option" data-size="small" onclick="selectPdf(this)">
+      <span class="pdf-option-icon">📄</span>
+      <div class="pdf-option-text">
+        <div class="pdf-option-title">Isian Sedikit</div>
+        <div class="pdf-option-sub">Font besar · 1–2 pengalaman</div>
+      </div>
+    </div>
+    <div class="pdf-option" data-size="large" onclick="selectPdf(this)">
+      <span class="pdf-option-icon">📑</span>
+      <div class="pdf-option-text">
+        <div class="pdf-option-title">Isian Banyak</div>
+        <div class="pdf-option-sub">Font kecil · 5+ pengalaman</div>
+      </div>
+    </div>
     <div class="modal-btns">
-      <button class="modal-cancel" onclick="closeModal()">Batal</button>
-      <button class="modal-ok" onclick="doAddSec()">Tambahkan ✓</button>
+      <button class="modal-btn" onclick="closePdfModal()">Batal</button>
+      <button class="modal-btn primary" onclick="printPdf()">Simpan PDF Sekarang</button>
     </div>
   </div>
 </div>
 
-<!-- PRINT SIZE MODAL -->
-<div class="print-modal-bg" id="printModalBg">
-  <div class="print-modal">
-    <h3>🖨️ Pilih Ukuran PDF</h3>
-    <p>Sesuaikan dengan jumlah isian CV kamu</p>
-    <div class="print-opts">
-      <button class="print-opt sel" id="po-kecil" onclick="selectPrint('kecil')">
-        <div class="print-opt-icon">📄</div>
-        <div class="print-opt-info">
-          <div class="print-opt-title">Isian Sedikit</div>
-          <div class="print-opt-desc">Font besar, padding lega — 1-2 pengalaman</div>
-        </div>
-      </button>
-      <button class="print-opt" id="po-normal" onclick="selectPrint('normal')">
-        <div class="print-opt-icon">📋</div>
-        <div class="print-opt-info">
-          <div class="print-opt-title">Isian Normal</div>
-          <div class="print-opt-desc">Font standar — 3-4 pengalaman</div>
-        </div>
-      </button>
-      <button class="print-opt" id="po-banyak" onclick="selectPrint('banyak')">
-        <div class="print-opt-icon">📑</div>
-        <div class="print-opt-info">
-          <div class="print-opt-title">Isian Banyak</div>
-          <div class="print-opt-desc">Font kecil, padat — 5+ pengalaman</div>
-        </div>
-      </button>
+<!-- SECTION PRESET MODAL -->
+<div class="modal-overlay" id="section-modal">
+  <div class="modal-box">
+    <div class="modal-title">✦ Tambah Section Baru</div>
+    <div class="preset-grid">
+      <div class="preset-card" onclick="selectPreset(this,'Proyek')">📁 Proyek</div>
+      <div class="preset-card" onclick="selectPreset(this,'Publikasi')">📝 Publikasi</div>
+      <div class="preset-card" onclick="selectPreset(this,'Volunteer')">❤️ Volunteer</div>
+      <div class="preset-card" onclick="selectPreset(this,'Minat')">⭐ Minat</div>
+      <div class="preset-card" onclick="selectPreset(this,'Referensi')">👥 Referensi</div>
+      <div class="preset-card" onclick="selectPreset(this,'Portofolio')">🎨 Portofolio</div>
     </div>
-    <button class="print-go" onclick="doPrint()">🖨️ Simpan PDF Sekarang</button>
-    <br/>
-    <button class="print-cancel" onclick="closePrint()">Batal</button>
+    <input type="text" class="custom-name-input" id="custom-section-name" placeholder="Atau ketik nama section sendiri…">
+    <div class="modal-btns" style="margin-top:16px">
+      <button class="modal-btn" onclick="closeSectionModal()">Batal</button>
+      <button class="modal-btn primary" onclick="addNewSection()">＋ Tambah</button>
+    </div>
   </div>
 </div>
 
-<div id="saveInd">💾 Tersimpan</div>
+<!-- SAVE DIALOG -->
+<div class="save-dialog" id="save-dialog">
+  <p>📂 Ditemukan data tersimpan. Muat kembali?</p>
+  <div class="save-dialog-btns">
+    <button class="sd-btn" onclick="clearSaveData()">🗑️ Hapus & Mulai Baru</button>
+    <button class="sd-btn primary" onclick="loadSaveData()">✅ Muat Data</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
 
 <script>
-'use strict';
+// ============================================================
+// KODE AKSES
+// ============================================================
+const KODE_VALID = "ADHAZONE-2026";
+const STORAGE_KEY = "cvpremium_access";
+const DATA_KEY = "cvpremium_data";
 
-/* ── TEMA ── */
-const TEMAS = ['tm','tw','td','te','ta','tr'];
-let curTema = 'tm';
-
-function setTema(t, btn) {
-  TEMAS.forEach(c => document.body.classList.remove(c));
-  document.body.classList.add(t);
-  document.querySelectorAll('.topt').forEach(b => b.classList.remove('sel'));
-  btn.classList.add('sel');
-  curTema = t;
-  localStorage.setItem('cv4-tema', t);
-}
-
-/* ── EMOJI ── */
-let emojiOn = true;
-function toggleEmoji() {
-  emojiOn = !emojiOn;
-  document.querySelectorAll('.emoji-s').forEach(el => {
-    el.style.display = emojiOn ? '' : 'none';
-  });
-  document.getElementById('emojiBtn').textContent = emojiOn ? '😊 Emoji' : '😶 Emoji';
-  localStorage.setItem('cv4-emoji', emojiOn);
-}
-
-/* ── EDIT ── */
-const ESEL = [
-  '.cv-name', '.cv-role', '.cv-about',
-  '.contact-row span',
-  '.sk-name', '.s-tag span',
-  '.lg-name', '.lg-lv',
-  '.ac-ic', '.ac-txt',
-  '.e-title', '.e-org', '.e-date', '.e-desc', '.e-badge',
-  '.ft-q', '.ft-n',
-  '.s-ttl-txt',
-  '.m-ttl-txt'
-].join(',');
-
-function toggleEdit() {
-  const isEditing = document.body.classList.contains('editing');
-  
-  if (isEditing) {
-    // MATIKAN edit mode
-    document.body.classList.remove('editing');
-    document.querySelectorAll(ESEL).forEach(el => el.contentEditable = 'false');
-    const btn = document.getElementById('editBtn');
-    btn.textContent = '✏️ Edit';
-    btn.className = 'tbtn';
+function checkAccess() {
+  const val = document.getElementById('access-input').value.trim().toUpperCase();
+  if (val === KODE_VALID) {
+    localStorage.setItem(STORAGE_KEY, '1');
+    document.getElementById('access-overlay').style.opacity = '0';
+    document.getElementById('access-overlay').style.transition = 'opacity 0.4s';
+    setTimeout(() => {
+      document.getElementById('access-overlay').style.display = 'none';
+      checkSavedData();
+    }, 400);
   } else {
-    // AKTIFKAN edit mode
-    document.body.classList.add('editing');
-    document.querySelectorAll(ESEL).forEach(el => el.contentEditable = 'true');
-    const btn = document.getElementById('editBtn');
-    btn.textContent = '✅ Selesai';
-    btn.className = 'tbtn active-edit';
+    const inp = document.getElementById('access-input');
+    inp.classList.add('error');
+    document.getElementById('access-error').textContent = '✕ Kode tidak valid. Coba lagi.';
+    setTimeout(() => inp.classList.remove('error'), 500);
   }
 }
 
-/* ── PHOTO ── */
-function handlePhoto(e) {
-  const f = e.target.files[0];
-  if (!f) return;
-  const r = new FileReader();
-  r.onload = ev => {
-    const img = document.getElementById('photoImg');
-    const icon = document.getElementById('photoIcon');
-    img.src = ev.target.result;
-    img.style.display = 'block';
-    icon.style.display = 'none';
+document.getElementById('access-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkAccess();
+});
+
+window.addEventListener('load', () => {
+  if (localStorage.getItem(STORAGE_KEY) === '1') {
+    document.getElementById('access-overlay').style.display = 'none';
+    checkSavedData();
+  }
+});
+
+// ============================================================
+// THEME
+// ============================================================
+function setTheme(theme, btn) {
+  document.documentElement.setAttribute('data-theme', theme === 'modern' ? '' : theme);
+  document.querySelectorAll('.tb-theme-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  showToast('Tema: ' + btn.title);
+}
+
+// ============================================================
+// EDIT MODE
+// ============================================================
+let editMode = false;
+
+function toggleEdit() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  document.getElementById('edit-btn').classList.toggle('active', editMode);
+
+  // Toggle contenteditable
+  document.querySelectorAll('[contenteditable]').forEach(el => {
+    el.contentEditable = editMode ? 'true' : 'false';
+  });
+
+  // Sliders
+  document.querySelectorAll('.skill-slider').forEach(s => {
+    s.style.display = editMode ? 'block' : 'none';
+  });
+
+  document.getElementById('photo-size-slider').style.display = editMode ? 'block' : 'none';
+
+  if (editMode) showToast('Mode Edit Aktif');
+  else { showToast('Mode Edit Nonaktif'); autoSave(); }
+}
+
+// ============================================================
+// PHOTO
+// ============================================================
+function triggerPhoto() {
+  if (editMode) document.getElementById('photo-input').click();
+}
+
+function loadPhoto(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const circle = document.getElementById('photo-circle');
+    circle.innerHTML = `<img src="${ev.target.result}" alt="Foto">`;
+    circle.style.width = circle.style.height = document.getElementById('photo-size-slider').value + 'px';
   };
-  r.readAsDataURL(f);
+  reader.readAsDataURL(file);
 }
 
 function resizePhoto(val) {
-  const box = document.getElementById('photoBox');
-  box.style.width = val + 'px';
-  box.style.height = val + 'px';
+  const c = document.getElementById('photo-circle');
+  c.style.width = val + 'px';
+  c.style.height = val + 'px';
 }
 
-/* ── BAR SLIDER ── */
-function setBar(input) {
-  const wrap = input.closest('.sk-wrap') || input.closest('.lg-wrap');
-  if (!wrap) return;
-  const fill = wrap.querySelector('.sk-fill');
-  if (fill) fill.style.width = input.value + '%';
+// ============================================================
+// SKILL BARS
+// ============================================================
+function updateSkillBar(slider) {
+  const item = slider.closest('.skill-item');
+  const fill = item.querySelector('.skill-bar-fill');
+  const pct = item.querySelector('.skill-pct');
+  fill.style.width = slider.value + '%';
+  pct.textContent = slider.value + '%';
 }
 
-/* ── ADD / DELETE ── */
-function addContact() {
-  const d = document.createElement('div');
-  d.className = 'contact-row';
-  d.innerHTML = '<div class="c-ic">📌</div><span contenteditable="true">Kontak baru</span><button class="c-del" onclick="this.parentElement.remove()">✕</button>';
-  document.getElementById('contactList').appendChild(d);
-  d.querySelector('span').focus();
+// ============================================================
+// EMOJI TOGGLE
+// ============================================================
+let emojiOn = true;
+function toggleEmoji() {
+  emojiOn = !emojiOn;
+  document.querySelectorAll('.section-emoji').forEach(e => {
+    e.style.display = emojiOn ? '' : 'none';
+  });
+  document.getElementById('emoji-btn').classList.toggle('active', !emojiOn);
+  showToast(emojiOn ? 'Emoji aktif' : 'Emoji disembunyikan');
 }
 
-function addSkill() {
-  const d = document.createElement('div');
-  d.className = 'sk-row';
-  d.innerHTML = '<div class="sk-wrap"><span class="sk-name" contenteditable="true">Nama Keahlian</span><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div><input type="range" class="range-sl" min="10" max="100" value="75" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button>';
-  document.getElementById('skList').appendChild(d);
-  d.querySelector('.sk-name').focus();
+// ============================================================
+// DELETE ITEMS & SECTIONS
+// ============================================================
+function deleteItem(btn) {
+  const parent = btn.parentElement;
+  parent.remove();
+  autoSave();
 }
 
-function addTool() {
-  const s = document.createElement('span');
-  s.className = 's-tag';
-  s.innerHTML = '<span contenteditable="true">Tool Baru</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button>';
-  document.getElementById('tlList').appendChild(s);
-  s.querySelector('span').focus();
+function deleteSection(id) {
+  if (confirm('Hapus section ini?')) {
+    document.getElementById(id).remove();
+    autoSave();
+  }
 }
 
-function addLang() {
-  const d = document.createElement('div');
-  d.className = 'lg-row';
-  d.innerHTML = '<div class="lg-wrap"><div class="lg-name" contenteditable="true">Nama Bahasa</div><div class="lg-lv" contenteditable="true">Level</div><div class="sk-bar"><div class="sk-fill" style="width:60%"></div></div><input type="range" class="range-sl" min="10" max="100" value="60" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button>';
-  document.getElementById('lgList').appendChild(d);
-  d.querySelector('.lg-name').focus();
+// ============================================================
+// ADD ITEMS
+// ============================================================
+function addContactItem() {
+  const div = document.createElement('div');
+  div.className = 'contact-item';
+  div.style.position = 'relative';
+  div.innerHTML = `<span class="contact-icon">📌</span><span contenteditable="${editMode}">Info baru</span><button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById('kontak-items').appendChild(div);
 }
 
-function addAch() {
-  const d = document.createElement('div');
-  d.className = 'ac-row';
-  d.innerHTML = '<div class="ac-ic" contenteditable="true">⭐</div><span class="ac-txt" contenteditable="true">Penghargaan baru</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button>';
-  document.getElementById('acList').appendChild(d);
-  d.querySelector('.ac-txt').focus();
+function addSkillItem() {
+  const div = document.createElement('div');
+  div.className = 'skill-item';
+  div.style.position = 'relative';
+  div.innerHTML = `
+    <div class="skill-name">
+      <span contenteditable="${editMode}">Skill Baru</span>
+      <span class="skill-pct">70%</span>
+    </div>
+    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
+    <input type="range" class="skill-slider" min="0" max="100" value="70" style="display:${editMode?'block':'none'}" oninput="updateSkillBar(this)">
+    <button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById('skills-items').appendChild(div);
 }
 
-function addEntry(listId) {
-  const d = document.createElement('div');
-  d.className = 'entry';
-  d.innerHTML = '<button class="e-del" onclick="delEntry(this)">✕</button><div class="e-top"><div class="e-title" contenteditable="true">Judul / Posisi</div><div class="e-date" contenteditable="true">Tahun</div></div><div class="e-org" contenteditable="true">Institusi / Tempat</div><div class="e-desc" contenteditable="true">Deskripsi singkat...</div>';
-  document.getElementById(listId).appendChild(d);
-  d.querySelector('.e-title').focus();
+function addLangItem() {
+  const div = document.createElement('div');
+  div.className = 'skill-item';
+  div.style.position = 'relative';
+  div.innerHTML = `
+    <div class="skill-name">
+      <span contenteditable="${editMode}">Bahasa Baru</span>
+      <span class="skill-pct">70%</span>
+    </div>
+    <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div>
+    <input type="range" class="skill-slider" min="0" max="100" value="70" style="display:${editMode?'block':'none'}" oninput="updateSkillBar(this)">
+    <button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById('bahasa-items').appendChild(div);
 }
 
-function delEntry(btn) {
-  if (confirm('Hapus item ini?')) btn.parentElement.remove();
+function addTagItem(containerId) {
+  const span = document.createElement('span');
+  span.className = 'tag-item';
+  span.contentEditable = editMode;
+  span.style.position = 'relative';
+  span.innerHTML = `Tag Baru<button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById(containerId).appendChild(span);
 }
 
-function delSec(id) {
-  if (confirm('Hapus section ini?')) document.getElementById(id).remove();
+function addAwardItem() {
+  const div = document.createElement('div');
+  div.className = 'contact-item';
+  div.style.position = 'relative';
+  div.innerHTML = `<span class="contact-icon">🏅</span><span contenteditable="${editMode}">Penghargaan Baru</span><button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById('awards-items').appendChild(div);
 }
 
-function delMain(id) {
-  if (confirm('Hapus section ini?')) document.getElementById(id).remove();
+function addExpItem() {
+  const div = document.createElement('div');
+  div.className = 'entry';
+  div.style.position = 'relative';
+  div.innerHTML = `
+    <div><div class="entry-title" contenteditable="${editMode}">Posisi Baru</div><div class="entry-sub" contenteditable="${editMode}">Perusahaan · Tipe</div></div>
+    <div class="entry-date" contenteditable="${editMode}">20XX — 20XX</div>
+    <div class="entry-desc" contenteditable="${editMode}">Deskripsi pekerjaan dan pencapaian utama.</div>
+    <button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById('exp-items').appendChild(div);
 }
 
-/* ── SECTION MODAL ── */
-let secN = 0;
-function openModal() {
-  document.getElementById('secInput').value = '';
-  document.getElementById('modalBg').classList.add('open');
-  setTimeout(() => document.getElementById('secInput').focus(), 100);
-}
-function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
-function pickP(n) { document.getElementById('secInput').value = n; document.getElementById('secInput').focus(); }
-
-function doAddSec() {
-  const name = document.getElementById('secInput').value.trim();
-  if (!name) return;
-  secN++;
-  const sid = 'ms-c' + secN;
-  const lid = 'el-c' + secN;
-  const d = document.createElement('div');
-  d.className = 'm-sec';
-  d.id = sid;
-  d.innerHTML = `<div class="m-ttl"><span class="emoji-s">${name.match(/^\p{Emoji}/u)?.[0] || '✦'}</span> <span contenteditable="true">${name.replace(/^\p{Emoji}\s*/u, '')}</span> <button class="sec-del" onclick="delMain('${sid}')">✕ Hapus</button><div class="m-ttl-line"></div></div><div id="${lid}"><div class="entry"><button class="e-del" onclick="delEntry(this)">✕</button><div class="e-top"><div class="e-title" contenteditable="true">Judul / Posisi</div><div class="e-date" contenteditable="true">Tahun</div></div><div class="e-org" contenteditable="true">Institusi / Tempat</div><div class="e-desc" contenteditable="true">Deskripsi singkat...</div></div></div><button class="add-btn" onclick="addEntry('${lid}')">＋ Tambah Item</button>`;
-  document.querySelector('.add-sec').before(d);
-  closeModal();
-  if (!emojiOn) d.querySelectorAll('.emoji-s').forEach(el => el.style.display = 'none');
-  setTimeout(() => d.querySelector('.e-title').focus(), 100);
+function addEduItem() {
+  const div = document.createElement('div');
+  div.className = 'entry';
+  div.style.position = 'relative';
+  div.innerHTML = `
+    <div><div class="entry-title" contenteditable="${editMode}">Jurusan / Gelar</div><div class="entry-sub" contenteditable="${editMode}">Universitas · IPK</div></div>
+    <div class="entry-date" contenteditable="${editMode}">20XX — 20XX</div>
+    <div class="entry-desc" contenteditable="${editMode}">Deskripsi pendidikan.</div>
+    <button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById('edu-items').appendChild(div);
 }
 
-document.getElementById('modalBg').addEventListener('click', e => { if (e.target.id === 'modalBg') closeModal(); });
-document.getElementById('secInput').addEventListener('keydown', e => { if (e.key === 'Enter') doAddSec(); if (e.key === 'Escape') closeModal(); });
+function addOrgItem() {
+  const div = document.createElement('div');
+  div.className = 'entry';
+  div.style.position = 'relative';
+  div.innerHTML = `
+    <div><div class="entry-title" contenteditable="${editMode}">Jabatan</div><div class="entry-sub" contenteditable="${editMode}">Organisasi</div></div>
+    <div class="entry-date" contenteditable="${editMode}">20XX — 20XX</div>
+    <div class="entry-desc" contenteditable="${editMode}">Deskripsi kegiatan.</div>
+    <button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById('org-items').appendChild(div);
+}
 
-/* ── AUTO SAVE ── */
-let saveTimer = null;
+function addCertItem() {
+  const span = document.createElement('span');
+  span.className = 'skill-tag';
+  span.style.position = 'relative';
+  span.innerHTML = `<span contenteditable="${editMode}">Sertifikasi Baru</span><button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById('cert-items').appendChild(span);
+}
+
+// ============================================================
+// ADD NEW SECTION
+// ============================================================
+let selectedPreset = '';
+
+function openSectionModal() {
+  selectedPreset = '';
+  document.getElementById('custom-section-name').value = '';
+  document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('section-modal').classList.add('open');
+}
+
+function closeSectionModal() {
+  document.getElementById('section-modal').classList.remove('open');
+}
+
+function selectPreset(card, name) {
+  document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedPreset = name;
+  document.getElementById('custom-section-name').value = '';
+}
+
+function addNewSection() {
+  const name = document.getElementById('custom-section-name').value.trim() || selectedPreset;
+  if (!name) { showToast('Masukkan nama section!'); return; }
+
+  const id = 'custom-section-' + Date.now();
+  const itemsId = 'items-' + Date.now();
+  const div = document.createElement('div');
+  div.className = 'cv-section';
+  div.id = id;
+  div.innerHTML = `
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-emoji">✦</span>
+        <span contenteditable="${editMode}">${name}</span>
+      </div>
+      <button class="delete-section-btn" onclick="deleteSection('${id}')">✕</button>
+    </div>
+    <div id="${itemsId}">
+      <div class="entry" style="position:relative">
+        <div><div class="entry-title" contenteditable="${editMode}">Item Baru</div><div class="entry-sub" contenteditable="${editMode}">Sub Judul</div></div>
+        <div class="entry-date" contenteditable="${editMode}">20XX</div>
+        <div class="entry-desc" contenteditable="${editMode}">Deskripsi.</div>
+        <button class="delete-btn" onclick="deleteItem(this)">✕</button>
+      </div>
+    </div>
+    <button class="add-btn" onclick="addExpItemTo('${itemsId}')">＋ Tambah</button>`;
+
+  // Insert before add-section-btn
+  const addBtn = document.querySelector('.add-section-btn');
+  addBtn.parentNode.insertBefore(div, addBtn);
+  closeSectionModal();
+  showToast('Section "' + name + '" ditambahkan!');
+}
+
+function addExpItemTo(containerId) {
+  const div = document.createElement('div');
+  div.className = 'entry';
+  div.style.position = 'relative';
+  div.innerHTML = `
+    <div><div class="entry-title" contenteditable="${editMode}">Item Baru</div><div class="entry-sub" contenteditable="${editMode}">Sub</div></div>
+    <div class="entry-date" contenteditable="${editMode}">20XX</div>
+    <div class="entry-desc" contenteditable="${editMode}">Deskripsi.</div>
+    <button class="delete-btn" onclick="deleteItem(this)">✕</button>`;
+  document.getElementById(containerId).appendChild(div);
+}
+
+// ============================================================
+// PDF
+// ============================================================
+let pdfSize = 'normal';
+
+function openPdfModal() { document.getElementById('pdf-modal').classList.add('open'); }
+function closePdfModal() { document.getElementById('pdf-modal').classList.remove('open'); }
+
+function selectPdf(el) {
+  document.querySelectorAll('.pdf-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  pdfSize = el.dataset.size;
+}
+
+function printPdf() {
+  closePdfModal();
+  const page = document.getElementById('cv-page');
+  const sizes = { small: '1.05', normal: '0.92', large: '0.78' };
+  page.style.zoom = sizes[pdfSize] || '0.92';
+  setTimeout(() => {
+    window.print();
+    page.style.zoom = '';
+  }, 300);
+}
+
+// ============================================================
+// AUTO-SAVE & LOAD
+// ============================================================
+let saveTimeout;
 function autoSave() {
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => {
-    try {
-      const data = {
-        html: document.getElementById('cvDoc').innerHTML,
-        foto: document.getElementById('photoImg').src || '',
-        fotoSize: document.getElementById('photoSizer').value,
-        tema: curTema,
-        emoji: emojiOn,
-        at: new Date().toLocaleString('id-ID')
-      };
-      localStorage.setItem('cv4-save', JSON.stringify(data));
-      showInd('💾 Tersimpan otomatis');
-    } catch(e) {}
-  }, 1500);
+  clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => {
+    const html = document.getElementById('cv-page').innerHTML;
+    localStorage.setItem(DATA_KEY, html);
+    showToast('💾 Tersimpan');
+  }, 800);
 }
 
-function showInd(msg) {
-  const el = document.getElementById('saveInd');
-  el.textContent = msg;
-  el.style.opacity = '1';
-  setTimeout(() => el.style.opacity = '0', 2500);
+// Listen to input events
+document.getElementById('cv-page').addEventListener('input', autoSave);
+
+function checkSavedData() {
+  if (localStorage.getItem(DATA_KEY)) {
+    document.getElementById('save-dialog').classList.add('open');
+  }
 }
 
-function autoLoad() {
-  try {
-    const raw = localStorage.getItem('cv4-save');
-    if (!raw) return;
-    const d = JSON.parse(raw);
-    if (!confirm('📂 Data CV tersimpan ditemukan!\nTerakhir: ' + d.at + '\n\nMuat data tersimpan?')) return;
-
-    document.getElementById('cvDoc').innerHTML = d.html;
-
-    if (d.foto && d.foto.startsWith('data:')) {
-      const img = document.getElementById('photoImg');
-      if (img) { img.src = d.foto; img.style.display = 'block'; }
-      const ic = document.getElementById('photoIcon');
-      if (ic) ic.style.display = 'none';
-    }
-
-    if (d.fotoSize) resizePhoto(d.fotoSize);
-
-    emojiOn = d.emoji !== false;
-    document.getElementById('emojiBtn').textContent = emojiOn ? '😊 Emoji' : '😶 Emoji';
-    if (!emojiOn) document.querySelectorAll('.emoji-s').forEach(el => el.style.display = 'none');
-
-    showInd('✅ Data dimuat!');
-  } catch(e) {}
+function loadSaveData() {
+  document.getElementById('cv-page').innerHTML = localStorage.getItem(DATA_KEY);
+  document.getElementById('save-dialog').classList.remove('open');
+  showToast('✅ Data dimuat');
 }
 
-function resetCV() {
-  if (confirm('Hapus semua data tersimpan dan mulai dari awal?')) {
-    localStorage.removeItem('cv4-save');
+function clearSaveData() {
+  localStorage.removeItem(DATA_KEY);
+  document.getElementById('save-dialog').classList.remove('open');
+  showToast('🗑️ Data dihapus');
+}
+
+function confirmReset() {
+  if (confirm('Reset semua data? Ini tidak bisa dibatalkan.')) {
+    localStorage.removeItem(DATA_KEY);
     location.reload();
   }
 }
 
-document.getElementById('cvDoc').addEventListener('input', autoSave);
-
-/* ── PRINT SIZE ── */
-let printSize = 'kecil';
-
-function openPrint() {
-  document.getElementById('printModalBg').classList.add('open');
+// ============================================================
+// TOAST
+// ============================================================
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
 }
-
-function closePrint() {
-  document.getElementById('printModalBg').classList.remove('open');
-}
-
-function selectPrint(size) {
-  printSize = size;
-  ['kecil','normal','banyak'].forEach(s => {
-    document.getElementById('po-' + s).classList.remove('sel');
-  });
-  document.getElementById('po-' + size).classList.add('sel');
-}
-
-function doPrint() {
-  closePrint();
-  document.body.classList.remove('print-kecil','print-normal','print-banyak');
-  document.body.classList.add('print-' + printSize);
-
-  // Delay untuk pastikan class ter-apply dulu
-  setTimeout(() => {
-    window.print();
-    setTimeout(() => {
-      document.body.classList.remove('print-kecil','print-normal','print-banyak');
-    }, 2000);
-  }, 500);
-}
-
-document.getElementById('printModalBg').addEventListener('click', e => {
-  if (e.target.id === 'printModalBg') closePrint();
-});
-
-/* ── INIT ── */
-const savedTema = localStorage.getItem('cv4-tema');
-if (savedTema) {
-  const btn = document.querySelector('.topt.' + savedTema);
-  if (btn) setTema(savedTema, btn);
-}
-
-const savedEmoji = localStorage.getItem('cv4-emoji');
-if (savedEmoji === 'false') { emojiOn = true; toggleEmoji(); }
-
-window.addEventListener('load', () => initLock());
-
-/* ── KODE AKSES ── */
-
-// ═══════════════════════════════════════
-// DAFTAR KODE AKSES YANG VALID
-// Tambah atau hapus kode di sini
-// Format: 'KODE': 'nama pembeli (opsional)'
-// ═══════════════════════════════════════
-const KODE_VALID = {
-  'ADHAZONE-2026': 'Pembeli',
-};
-
-let attempts = 0;
-const MAX_ATTEMPTS = 5;
-
-function checkCode() {
-  const input = document.getElementById('lockInput');
-  const kode = input.value.trim().toUpperCase();
-  const errEl = document.getElementById('lockErr');
-  const attEl = document.getElementById('lockAttempts');
-
-  // Cek sudah terlalu banyak salah
-  if (attempts >= MAX_ATTEMPTS) {
-    errEl.textContent = '⛔ Terlalu banyak percobaan. Refresh halaman.';
-    input.disabled = true;
-    return;
-  }
-
-  // Cek kode
-  if (KODE_VALID[kode]) {
-    // ✅ BENAR
-    localStorage.setItem('cv4-access', kode);
-    localStorage.setItem('cv4-access-time', Date.now());
-
-    const lock = document.getElementById('lockScreen');
-    lock.style.transition = 'opacity .5s';
-    lock.style.opacity = '0';
-    setTimeout(() => {
-      lock.style.display = 'none';
-      // Load data tersimpan setelah kunci terbuka
-      autoLoad();
-    }, 500);
-
-    input.classList.remove('error');
-    errEl.textContent = '';
-
-  } else {
-    // ❌ SALAH
-    attempts++;
-    input.classList.add('error');
-    setTimeout(() => input.classList.remove('error'), 400);
-    input.value = '';
-
-    const sisa = MAX_ATTEMPTS - attempts;
-    errEl.textContent = '❌ Kode tidak valid!';
-    if (sisa > 0) {
-      attEl.textContent = `Sisa percobaan: ${sisa}`;
-    } else {
-      attEl.textContent = '';
-      errEl.textContent = '⛔ Akses diblokir. Refresh halaman.';
-      input.disabled = true;
-    }
-  }
-}
-
-function initLock() {
-  const savedCode = localStorage.getItem('cv4-access');
-
-  if (savedCode && KODE_VALID[savedCode]) {
-    // Sudah pernah akses di perangkat ini — langsung buka
-    document.getElementById('lockScreen').style.display = 'none';
-    // Baru load data setelah lock terbuka
-    setTimeout(autoLoad, 400);
-  }
-  // Kalau tidak ada kode → lockScreen tetap tampil
-  // autoLoad TIDAK dipanggil sampai kode diinput
-}
-
-// Jalankan saat halaman load — GANTIKAN window.addEventListener load
-initLock();
 </script>
 </body>
 </html>
