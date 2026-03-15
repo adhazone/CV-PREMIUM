@@ -237,7 +237,7 @@ body {
 ============================================================ */
 #toolbar {
   position: fixed; top: 0; left: 0; right: 0;
-  height: 52px;
+  height: 58px;
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -282,15 +282,30 @@ body {
 .tb-btn.active { background: var(--primary); color: var(--surface); border-color: var(--primary); }
 
 .tb-theme-btn {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  border: 2px solid transparent;
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 11px;
+  height: 34px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  transition: all 0.15s;
 }
 
-.tb-theme-btn:hover { transform: scale(1.15); }
-.tb-theme-btn.active { border-color: var(--accent); transform: scale(1.1); }
+.tb-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.tb-theme-btn:hover { border-color: var(--accent); background: var(--tag-bg); color: var(--accent); }
+.tb-theme-btn.active { background: var(--primary); color: var(--surface); border-color: var(--primary); }
 
 .tb-divider {
   width: 1px; height: 24px;
@@ -303,8 +318,8 @@ body {
    MAIN LAYOUT
 ============================================================ */
 #cv-wrapper {
-  margin-top: 52px;
-  min-height: calc(100vh - 52px);
+  margin-top: 58px;
+  min-height: calc(100vh - 58px);
   display: flex; justify-content: center;
   padding: 32px 16px 48px;
 }
@@ -756,10 +771,9 @@ body.edit-mode .delete-section-btn { display: inline-flex; }
    PRINT
 ============================================================ */
 @media print {
-  #toolbar, #access-overlay, .modal-overlay, .save-dialog, .delete-btn, .add-btn, .add-section-btn, .delete-section-btn, .skill-slider, #photo-size-slider { display: none !important; }
-  body { margin: 0; }
-  #cv-wrapper { margin: 0; padding: 0; }
-  #cv-page { width: 100%; max-width: 100%; border-radius: 0; box-shadow: none; }
+  #toolbar, #access-overlay, .modal-overlay, .save-dialog,
+  .delete-btn, .add-btn, .add-section-btn, .delete-section-btn,
+  .skill-slider, #photo-size-slider { display: none !important; }
 }
 
 /* ============================================================
@@ -833,12 +847,12 @@ body.edit-mode .delete-section-btn { display: inline-flex; }
 <!-- TOOLBAR -->
 <div id="toolbar">
   <span class="tb-label">Tema</span>
-  <button class="tb-theme-btn active" data-theme="modern" title="Modern" style="background:linear-gradient(135deg,#1a1a2e,#c9a84c)" onclick="setTheme('modern',this)"></button>
-  <button class="tb-theme-btn" data-theme="warm" title="Warm" style="background:linear-gradient(135deg,#3d1f00,#e07b39)" onclick="setTheme('warm',this)"></button>
-  <button class="tb-theme-btn" data-theme="dark" title="Dark" style="background:linear-gradient(135deg,#0f0f14,#7c6ee0)" onclick="setTheme('dark',this)"></button>
-  <button class="tb-theme-btn" data-theme="editorial" title="Editorial" style="background:linear-gradient(135deg,#111111,#d63031)" onclick="setTheme('editorial',this)"></button>
-  <button class="tb-theme-btn" data-theme="artdeco" title="Art Deco" style="background:linear-gradient(135deg,#1c1507,#b8952a)" onclick="setTheme('artdeco',this)"></button>
-  <button class="tb-theme-btn" data-theme="retro" title="Retro" style="background:linear-gradient(135deg,#2d2016,#e8902a)" onclick="setTheme('retro',this)"></button>
+  <button class="tb-theme-btn active" data-theme="modern" onclick="setTheme('modern',this)"><span class="tb-dot" style="background:linear-gradient(135deg,#1a1a2e,#c9a84c)"></span>Modern</button>
+  <button class="tb-theme-btn" data-theme="warm" onclick="setTheme('warm',this)"><span class="tb-dot" style="background:linear-gradient(135deg,#3d1f00,#e07b39)"></span>Warm</button>
+  <button class="tb-theme-btn" data-theme="dark" onclick="setTheme('dark',this)"><span class="tb-dot" style="background:linear-gradient(135deg,#0f0f14,#7c6ee0)"></span>Dark</button>
+  <button class="tb-theme-btn" data-theme="editorial" onclick="setTheme('editorial',this)"><span class="tb-dot" style="background:linear-gradient(135deg,#111111,#d63031)"></span>Editorial</button>
+  <button class="tb-theme-btn" data-theme="artdeco" onclick="setTheme('artdeco',this)"><span class="tb-dot" style="background:linear-gradient(135deg,#1c1507,#b8952a)"></span>Art Deco</button>
+  <button class="tb-theme-btn" data-theme="retro" onclick="setTheme('retro',this)"><span class="tb-dot" style="background:linear-gradient(135deg,#2d2016,#e8902a)"></span>Retro</button>
   <div class="tb-divider"></div>
   <button class="tb-btn" id="edit-btn" onclick="toggleEdit()">✏️ Edit</button>
   <button class="tb-btn" id="emoji-btn" onclick="toggleEmoji()">😊 Emoji</button>
@@ -1230,9 +1244,19 @@ document.getElementById('access-input').addEventListener('keydown', e => {
 });
 
 window.addEventListener('load', () => {
+  const overlay = document.getElementById('access-overlay');
+  // Always show overlay first
+  overlay.style.display = 'flex';
+  overlay.style.opacity = '1';
+
   if (localStorage.getItem(STORAGE_KEY) === '1') {
-    document.getElementById('access-overlay').style.display = 'none';
-    checkSavedData();
+    // Already authenticated — auto-dismiss overlay
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.4s';
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      checkSavedData();
+    }, 400);
   }
 });
 
@@ -1524,13 +1548,37 @@ function selectPdf(el) {
 
 function printPdf() {
   closePdfModal();
-  const page = document.getElementById('cv-page');
-  const sizes = { small: '1.05', normal: '0.92', large: '0.78' };
-  page.style.zoom = sizes[pdfSize] || '0.92';
+  const old = document.getElementById('print-style');
+  if (old) old.remove();
+
+  const scaleMap = { small: 0.72, normal: 0.62, large: 0.52 };
+  const scale = scaleMap[pdfSize] || 0.62;
+  const pageWidthMm = Math.round(210 / scale);
+
+  const style = document.createElement('style');
+  style.id = 'print-style';
+  style.textContent = `
+    @media print {
+      @page { size: A4 portrait; margin: 0; }
+      html, body { width: 210mm; height: 297mm; margin: 0 !important; padding: 0 !important; overflow: hidden; }
+      #cv-wrapper { margin: 0 !important; padding: 0 !important; display: block !important; }
+      #cv-page {
+        width: ${pageWidthMm}mm !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        transform: scale(${scale});
+        transform-origin: top left;
+        position: absolute;
+        top: 0; left: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
   setTimeout(() => {
     window.print();
-    page.style.zoom = '';
-  }, 300);
+    setTimeout(() => style.remove(), 500);
+  }, 350);
 }
 
 // ============================================================
