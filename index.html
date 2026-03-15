@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CV Premium v4</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* =============================================
+   RESET
+============================================= */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+img { display:block; max-width:100%; }
+button { cursor:pointer; }
+
+/* =============================================
+   TEMA TOKENS — 6 TEMA
+============================================= */
+/* 1. Modern */
+.tm { --pg:#e8e8e4; --cv:#fff; --sl:#f7f7f5; --hd:#fff; --a1:#111; --a2:#555; --mu:#999; --ln:#eee; --tg:#f0f0ee; --tc:#444; --nm:#111; --ni:#999; --bf:#111; --fb:#111; --fc:#fff; --st:#111; --fn:'DM Serif Display',serif; --fb2:'DM Sans',sans-serif; }
+/* 2. Warm */
+.tw { --pg:#ddd5c5; --cv:#faf7f2; --sl:#ede5d5; --hd:#ede5d5; --a1:#8b5e3c; --a2:#6b4f2a; --mu:#9a8878; --ln:#e2d5c3; --tg:#e8d5c0; --tc:#6b4f2a; --nm:#2c2416; --ni:#a07850; --bf:#8b5e3c; --fb:#ede5d5; --fc:#6b4f2a; --st:#a07850; --fn:'Cormorant Garamond',serif; --fb2:'DM Sans',sans-serif; }
+/* 3. Dark */
+.td { --pg:#0d0d0d; --cv:#161616; --sl:#111; --hd:#0d0d0d; --a1:#e8c97a; --a2:#ccc; --mu:#666; --ln:#2a2a2a; --tg:#222; --tc:#e8c97a; --nm:#f5f5f5; --ni:#e8c97a; --bf:#e8c97a; --fb:#0d0d0d; --fc:#e8c97a; --st:#e8c97a; --fn:'Outfit',sans-serif; --fb2:'Outfit',sans-serif; }
+/* 4. Editorial */
+.te { --pg:#f0ece4; --cv:#fff; --sl:#f4f4f4; --hd:#fff; --a1:#c41e3a; --a2:#333; --mu:#777; --ln:#ddd; --tg:#fff0f0; --tc:#c41e3a; --nm:#111; --ni:#c41e3a; --bf:#c41e3a; --fb:#111; --fc:#fff; --st:#c41e3a; --fn:'Playfair Display',serif; --fb2:'DM Sans',sans-serif; }
+/* 5. Art Deco */
+.ta { --pg:#12192b; --cv:#1a2540; --sl:#0f1e38; --hd:#0f1e38; --a1:#f0b429; --a2:#ccd6f6; --mu:#8892b0; --ln:#233554; --tg:rgba(240,180,41,.15); --tc:#f0b429; --nm:#ccd6f6; --ni:#f0b429; --bf:#f0b429; --fb:#0f1e38; --fc:#f0b429; --st:#f0b429; --fn:'Outfit',sans-serif; --fb2:'Outfit',sans-serif; }
+/* 6. Retro */
+.tr { --pg:#2c1810; --cv:#f5e6d0; --sl:#3d2314; --hd:#3d2314; --a1:#c8860a; --a2:#5c3a1a; --mu:#8b7355; --ln:#d4c4a8; --tg:#e8d4b0; --tc:#5c3a1a; --nm:#f5e6d0; --ni:#c8860a; --bf:#c8860a; --fb:#2c1810; --fc:#f5e6d0; --st:#c8860a; --fn:'Libre Baskerville',serif; --fb2:'DM Sans',sans-serif; }
+
+/* =============================================
+   BODY
+============================================= */
+body {
+  font-family: var(--fb2, 'DM Sans', sans-serif);
+  background: var(--pg);
+  color: var(--nm);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 12px 80px;
+  transition: background .35s;
+}
+
+/* =============================================
+   TOOLBAR
+============================================= */
+.toolbar {
+  width: 100%;
+  max-width: 780px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tb-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tb-lbl {
+  font-family: 'Outfit', sans-serif;
+  font-size: .68rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.5);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.tb-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.tbtn {
+  padding: 7px 13px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.92);
+  font-family: 'Outfit', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  color: #222;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.tbtn:hover { border-color: #333; }
+.tbtn.active-edit { background: #2563eb; color: #fff; border-color: #2563eb; }
+.tbtn.pdf { background: #111; color: #fff; border-color: #111; }
+.tbtn.danger { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
+.tbtn.danger:hover { background: #dc2626; color: #fff; }
+
+/* Tema switcher */
+.tema-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 9px 14px;
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+.tema-lbl {
+  font-family: 'Outfit', sans-serif;
+  font-size: .63rem;
+  font-weight: 800;
+  color: rgba(255,255,255,.6);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tema-opts { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.topt {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  font-family: 'Outfit', sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  transition: all .22s;
+  white-space: nowrap;
+}
+
+.topt.tm { background: #f5f5f5; color: #111; border-color: #ccc; }
+.topt.tw { background: #f5f0e8; color: #6b4f2a; border-color: #c9b99a; }
+.topt.td { background: #1a1a1a; color: #e8c97a; border-color: #444; }
+.topt.te { background: #fff; color: #c41e3a; border-color: #ffd0d0; }
+.topt.ta { background: #0f1e38; color: #f0b429; border-color: #233554; }
+.topt.tr { background: #3d2314; color: #c8860a; border-color: #5c3a1a; }
+.topt.sel { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+.topt.tm.sel { border-color: #111; }
+.topt.tw.sel { border-color: #8b5e3c; }
+.topt.td.sel { border-color: #e8c97a; }
+.topt.te.sel { border-color: #c41e3a; }
+.topt.ta.sel { border-color: #f0b429; }
+.topt.tr.sel { border-color: #c8860a; }
+.tdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* =============================================
+   CV PAPER
+============================================= */
+.cv {
+  width: 100%;
+  max-width: 780px;
+  background: var(--cv);
+  box-shadow: 0 20px 70px rgba(0,0,0,.22);
+  position: relative;
+}
+
+/* top color strip */
+.cv::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--st);
+  z-index: 5;
+}
+.te .cv::before { height: 6px; }
+.ta .cv::before { background: linear-gradient(90deg, #e94560, #f0b429); }
+.tr .cv::before { height: 7px; background: repeating-linear-gradient(90deg, #c8860a 0, #c8860a 8px, #2c1810 8px, #2c1810 10px); }
+
+/* =============================================
+   HEADER — 2 COLUMNS
+============================================= */
+.cv-hd {
+  display: flex;
+  background: var(--hd);
+  border-bottom: 1px solid var(--ln);
+  transition: background .35s, border-color .35s;
+}
+
+/* Left col */
+.hd-left {
+  width: 190px;
+  flex-shrink: 0;
+  padding: 28px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  border-right: 1px solid var(--ln);
+}
+
+.td .hd-left, .ta .hd-left { border-right-color: var(--ln); }
+.te .hd-left { background: #f8f8f8; border-right: 3px solid #111; }
+.ta .hd-left { background: rgba(0,0,0,.2); }
+.tr .hd-left { background: rgba(0,0,0,.15); }
+
+/* Photo */
+.photo-outer {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.photo-box {
+  border-radius: 50%;
+  background: var(--tg);
+  border: 3px solid rgba(128,128,128,.25);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all .3s;
+  position: relative;
+  /* default size — controlled by JS */
+  width: 80px;
+  height: 80px;
+}
+
+.te .photo-box { border-radius: 6px; border: 2px solid #111; }
+.ta .photo-box { border-color: #f0b429; box-shadow: 0 0 0 2px #e94560; }
+.tr .photo-box { border-color: #c8860a; border-width: 3px; }
+
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.photo-ov {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s;
+  font-size: .55rem;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.4;
+  padding: 4px;
+}
+.photo-box:hover .photo-ov { opacity: 1; }
+
+#photoInput { display: none; }
+
+/* Photo size slider */
+.photo-sizer {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 100%;
+}
+body.editing .photo-sizer { display: flex; }
+
+.sizer-lbl {
+  font-size: .58rem;
+  font-weight: 700;
+  color: var(--mu);
+  letter-spacing: .5px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.sizer-input {
+  width: 100%;
+  height: 3px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--ln);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  transition: background .35s;
+}
+.sizer-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--a1);
+  box-shadow: 0 1px 4px rgba(0,0,0,.25);
+}
+
+/* Contacts */
+.contacts { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .67rem;
+  color: var(--mu);
+  line-height: 1.4;
+  position: relative;
+}
+.td .contact-row, .ta .contact-row, .tr .contact-row { color: #aaa; }
+
+.c-ic {
+  width: 17px; height: 17px;
+  background: var(--tg);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .55rem;
+  flex-shrink: 0;
+}
+
+.c-del {
+  display: none;
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  font-size: .5rem;
+  align-items: center;
+  justify-content: center;
+}
+body.editing .c-del { display: flex; }
+
+/* Right col */
+.hd-right {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 28px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cv-name {
+  font-family: var(--fn);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--nm);
+  line-height: 1.05;
+  letter-spacing: -.5px;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+.cv-name em { font-style: italic; color: var(--ni); }
+
+.td .cv-name, .ta .cv-name, .tr .cv-name { color: #fff; }
+.te .cv-name { font-size: 2rem; font-weight: 900; }
+.te .cv-name::after { content: ''; display: block; width: 44px; height: 4px; background: #c41e3a; margin-top: 6px; border-radius: 2px; }
+
+.cv-role {
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--a1);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.td .cv-role { color: #e8c97a; }
+.ta .cv-role { color: #f0b429; letter-spacing: 3px; }
+.tr .cv-role { color: #c8860a; }
+
+.cv-about {
+  font-size: .78rem;
+  font-weight: 300;
+  color: var(--mu);
+  line-height: 1.8;
+  padding-left: 11px;
+  border-left: 2px solid var(--ln);
+}
+.td .cv-about { color: #aaa; border-left-color: #333; }
+.ta .cv-about { color: #8892b0; border-left-color: #f0b429; }
+.tr .cv-about { color: #8b7355; border-left-color: #c8860a; }
+.cv-about strong { color: var(--a1); font-weight: 600; }
+
+/* =============================================
+   BODY — SIDE + MAIN
+============================================= */
+.cv-body {
+  display: flex;
+  align-items: stretch;
+}
+
+/* ── SIDEBAR ── */
+.cv-side {
+  width: 190px;
+  flex-shrink: 0;
+  padding: 20px 16px 28px;
+  background: var(--sl);
+  border-right: 1px solid var(--ln);
+  transition: background .35s, border-color .35s;
+}
+.td .cv-side { background: #111; border-right-color: #222; }
+.ta .cv-side { background: #0f1e38; border-right-color: #233554; }
+.tr .cv-side { background: #3d2314; border-right-color: rgba(200,134,10,.3); }
+.te .cv-side { background: #f8f8f8; border-right: 2px solid #ddd; }
+
+.s-sec { margin-bottom: 20px; }
+.s-sec:last-child { margin-bottom: 0; }
+
+.s-ttl {
+  font-size: .57rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--a1);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.td .s-ttl { color: #e8c97a; }
+.ta .s-ttl { color: #f0b429; }
+.tr .s-ttl { color: #c8860a; }
+.te .s-ttl { color: #c41e3a; }
+
+/* Skill */
+.sk-row {
+  margin-bottom: 9px;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+.sk-wrap { flex: 1; min-width: 0; }
+
+.sk-name {
+  font-size: .72rem;
+  color: var(--nm);
+  font-weight: 400;
+  display: block;
+  margin-bottom: 3px;
+  word-break: break-word;
+}
+.td .sk-name, .ta .sk-name, .tr .sk-name { color: #e0e0e0; }
+
+.sk-bar { height: 3px; background: var(--ln); border-radius: 2px; overflow: hidden; }
+.td .sk-bar, .ta .sk-bar { background: rgba(255,255,255,.12); }
+.sk-fill { height: 100%; background: var(--bf); border-radius: 2px; }
+
+/* Slider — visible only in edit mode */
+.range-sl {
+  display: none;
+  width: 100%;
+  height: 3px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--ln);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.range-sl::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--a1);
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+body.editing .range-sl { display: block; }
+
+/* Tags */
+.tags-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
+.s-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--tg);
+  color: var(--tc);
+  font-size: .63rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+.td .s-tag { background: #222; color: #e8c97a; border: 1px solid #333; }
+.ta .s-tag { background: rgba(240,180,41,.12); color: #f0b429; border: 1px solid rgba(240,180,41,.25); }
+.tr .s-tag { background: rgba(200,134,10,.15); color: #c8860a; border: 1px solid rgba(200,134,10,.25); }
+
+/* Lang */
+.lg-row {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+.lg-wrap { flex: 1; min-width: 0; }
+.lg-name { font-size: .73rem; color: var(--nm); font-weight: 600; word-break: break-word; }
+.td .lg-name, .ta .lg-name, .tr .lg-name { color: #e0e0e0; }
+.lg-lv { font-size: .63rem; color: var(--mu); margin-top: 1px; }
+
+/* Achievement */
+.ac-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.ac-row:last-child { margin-bottom: 0; }
+.ac-ic {
+  width: 16px; height: 16px;
+  background: var(--tg);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .55rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.td .ac-ic, .ta .ac-ic { background: rgba(255,255,255,.08); }
+.ac-txt { font-size: .7rem; color: var(--mu); line-height: 1.5; flex: 1; min-width: 0; word-break: break-word; }
+.td .ac-txt, .ta .ac-txt { color: #aaa; }
+.tr .ac-txt { color: #8b7355; }
+
+/* ── MAIN ── */
+.cv-main {
+  flex: 1;
+  min-width: 0;
+  padding: 20px 28px 28px 22px;
+}
+
+.m-sec { margin-bottom: 18px; }
+.m-sec:last-child { margin-bottom: 0; }
+
+.m-ttl {
+  font-family: var(--fn);
+  font-size: .93rem;
+  font-weight: 700;
+  color: var(--a1);
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.td .m-ttl { color: #e8c97a; }
+.ta .m-ttl { color: #f0b429; }
+.tr .m-ttl { color: #c8860a; }
+.te .m-ttl { font-size: 1rem; font-weight: 900; border-bottom: 2px solid #111; padding-bottom: 5px; }
+
+.m-ttl-line {
+  flex: 1;
+  height: 1px;
+  background: var(--ln);
+}
+.te .m-ttl-line { display: none; }
+.td .m-ttl-line { background: #2a2a2a; }
+.ta .m-ttl-line { background: #233554; }
+
+/* Entry */
+.entry {
+  position: relative;
+  padding-left: 12px;
+  margin-bottom: 13px;
+}
+.entry:last-child { margin-bottom: 0; }
+
+.entry::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 7px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--a1);
+  flex-shrink: 0;
+}
+.td .entry::before { background: #e8c97a; }
+.ta .entry::before { background: #f0b429; }
+.tr .entry::before { background: #c8860a; }
+.te .entry::before { border-radius: 1px; width: 5px; height: 5px; background: #c41e3a; }
+
+.e-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 1px;
+}
+
+.e-title {
+  font-size: .83rem;
+  font-weight: 600;
+  color: var(--nm);
+  line-height: 1.35;
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+.td .e-title { color: #f0f0f0; }
+.ta .e-title { color: #ccd6f6; }
+.tr .e-title { color: #f5e6d0; }
+
+.e-date {
+  font-size: .65rem;
+  color: var(--mu);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.e-org {
+  font-size: .71rem;
+  color: var(--a1);
+  font-style: italic;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+.td .e-org { color: #e8c97a; }
+.ta .e-org { color: #f0b429; }
+.tr .e-org { color: #c8860a; }
+
+.e-desc {
+  font-size: .74rem;
+  color: var(--a2);
+  line-height: 1.75;
+  font-weight: 300;
+  word-break: break-word;
+}
+.td .e-desc { color: #aaa; }
+.ta .e-desc { color: #8892b0; }
+.tr .e-desc { color: #8b7355; }
+
+.e-badge {
+  display: inline-block;
+  background: var(--tg);
+  color: var(--a1);
+  font-size: .62rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-top: 4px;
+  word-break: break-word;
+}
+.td .e-badge { background: #222; color: #e8c97a; }
+.ta .e-badge { background: rgba(240,180,41,.12); color: #f0b429; }
+.tr .e-badge { background: rgba(200,134,10,.12); color: #c8860a; }
+
+/* ── FOOTER ── */
+.cv-ft {
+  background: var(--fb);
+  padding: 11px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(128,128,128,.15);
+}
+.te .cv-ft { background: #111; border-top: 3px solid #c41e3a; }
+.ta .cv-ft { background: #0a1628; }
+.tr .cv-ft { background: #2c1810; border-top: 2px double #c8860a; }
+
+.ft-q {
+  font-family: var(--fn);
+  font-size: .76rem;
+  font-style: italic;
+  color: var(--fc);
+  opacity: .65;
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+.ft-n {
+  font-size: .62rem;
+  font-weight: 700;
+  color: var(--fc);
+  opacity: .45;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+/* =============================================
+   EDIT MODE CONTROLS
+============================================= */
+/* Generic delete button */
+.d-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  font-size: .55rem;
+  flex-shrink: 0;
+  transition: all .18s;
+}
+.d-btn:hover { background: #dc2626; transform: scale(1.1); }
+body.editing .d-btn { display: flex; }
+
+/* Entry delete — absolute positioned */
+.e-del {
+  display: none;
+  position: absolute;
+  right: -8px; top: 3px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  font-size: .55rem;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: all .18s;
+}
+.e-del:hover { background: #dc2626; transform: scale(1.1); }
+body.editing .e-del { display: flex; }
+
+/* Section delete */
+.sec-del {
+  display: none;
+  padding: 2px 7px;
+  border-radius: 5px;
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+  font-family: 'Outfit', sans-serif;
+  font-size: .58rem;
+  font-weight: 700;
+  margin-left: 4px;
+  transition: all .18s;
+}
+.sec-del:hover { background: #dc2626; color: #fff; }
+body.editing .sec-del { display: inline-flex; }
+
+/* Add button */
+.add-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  margin-top: 7px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: 1.5px dashed #93c5fd;
+  background: rgba(59,130,246,.05);
+  color: #3b82f6;
+  font-family: 'Outfit', sans-serif;
+  font-size: .68rem;
+  font-weight: 700;
+  transition: all .18s;
+}
+.add-btn:hover { background: rgba(59,130,246,.1); }
+body.editing .add-btn { display: flex; }
+
+/* Add section button */
+.add-sec {
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px;
+  border-radius: 10px;
+  border: 2px dashed #6366f1;
+  background: rgba(99,102,241,.05);
+  color: #6366f1;
+  font-family: 'Outfit', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  transition: all .18s;
+  text-align: center;
+}
+.add-sec:hover { background: rgba(99,102,241,.1); }
+body.editing .add-sec { display: block; }
+
+/* Editable outline */
+body.editing [contenteditable="true"] {
+  outline: 1.5px dashed rgba(59,130,246,.35) !important;
+  border-radius: 3px;
+  min-width: 16px;
+}
+
+/* =============================================
+   MODAL
+============================================= */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-bg.open { display: flex; }
+.modal {
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+}
+.modal h3 { font-family: 'Outfit',sans-serif; font-size: .92rem; font-weight: 800; color: #111; margin-bottom: 4px; }
+.modal p { font-size: .75rem; color: #888; margin-bottom: 14px; }
+.presets { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.preset {
+  padding: 4px 10px;
+  border-radius: 7px;
+  border: 1.5px solid #e5e7eb;
+  background: #f9fafb;
+  font-family: 'Outfit', sans-serif;
+  font-size: .7rem;
+  font-weight: 600;
+  color: #374151;
+  transition: all .15s;
+}
+.preset:hover { border-color: #6366f1; color: #6366f1; background: #eef2ff; }
+.modal input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 9px;
+  border: 2px solid #e5e7eb;
+  font-family: 'Outfit', sans-serif;
+  font-size: .86rem;
+  outline: none;
+  transition: border .18s;
+  margin-bottom: 14px;
+}
+.modal input:focus { border-color: #6366f1; }
+.modal-btns { display: flex; gap: 8px; justify-content: flex-end; }
+.modal-cancel { padding: 7px 15px; border-radius: 7px; border: 1.5px solid #e5e7eb; background: #fff; font-family: 'Outfit',sans-serif; font-size: .77rem; font-weight: 600; color: #666; }
+.modal-ok { padding: 7px 15px; border-radius: 7px; border: none; background: #6366f1; color: #fff; font-family: 'Outfit',sans-serif; font-size: .77rem; font-weight: 700; }
+.modal-ok:hover { background: #4f46e5; }
+
+/* =============================================
+   SAVE INDICATOR
+============================================= */
+#saveInd {
+  position: fixed;
+  bottom: 18px; right: 18px;
+  background: #111;
+  color: #4ade80;
+  padding: 7px 13px;
+  border-radius: 9px;
+  font-family: 'Outfit', sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+}
+
+/* =============================================
+   PRINT SIZE CLASSES
+============================================= */
+/* KECIL — isian sedikit, font besar */
+body.print-kecil .cv-name     { font-size: 3.2rem !important; }
+body.print-kecil .cv-role     { font-size: 1rem !important; letter-spacing: 3.5px !important; }
+body.print-kecil .cv-about    { font-size: 1.1rem !important; line-height: 2 !important; }
+body.print-kecil .s-ttl       { font-size: 0.88rem !important; }
+body.print-kecil .sk-name     { font-size: 1rem !important; }
+body.print-kecil .s-tag       { font-size: 0.9rem !important; padding: 6px 13px !important; }
+body.print-kecil .lg-name     { font-size: 1rem !important; }
+body.print-kecil .lg-lv       { font-size: 0.86rem !important; }
+body.print-kecil .ac-txt      { font-size: 0.95rem !important; }
+body.print-kecil .m-ttl       { font-size: 1.3rem !important; margin-bottom: 16px !important; }
+body.print-kecil .e-title     { font-size: 1.1rem !important; }
+body.print-kecil .e-org       { font-size: 0.95rem !important; }
+body.print-kecil .e-date      { font-size: 0.88rem !important; }
+body.print-kecil .e-desc      { font-size: 1rem !important; line-height: 2 !important; }
+body.print-kecil .contact-row { font-size: 0.92rem !important; }
+body.print-kecil .hd-left     { padding: 36px 20px 28px !important; }
+body.print-kecil .hd-right    { padding: 36px 36px 28px 28px !important; }
+body.print-kecil .cv-side     { padding: 30px 20px 36px !important; }
+body.print-kecil .cv-main     { padding: 30px 36px 36px 28px !important; }
+body.print-kecil .s-sec       { margin-bottom: 30px !important; }
+body.print-kecil .m-sec       { margin-bottom: 26px !important; }
+body.print-kecil .entry       { margin-bottom: 20px !important; }
+
+/* NORMAL — isian sedang */
+body.print-normal .cv-name    { font-size: 2.8rem !important; }
+body.print-normal .cv-role    { font-size: 0.9rem !important; letter-spacing: 3px !important; }
+body.print-normal .cv-about   { font-size: 1rem !important; line-height: 1.9 !important; }
+body.print-normal .s-ttl      { font-size: 0.78rem !important; }
+body.print-normal .sk-name    { font-size: 0.92rem !important; }
+body.print-normal .s-tag      { font-size: 0.82rem !important; padding: 5px 11px !important; }
+body.print-normal .lg-name    { font-size: 0.92rem !important; }
+body.print-normal .lg-lv      { font-size: 0.8rem !important; }
+body.print-normal .ac-txt     { font-size: 0.88rem !important; }
+body.print-normal .m-ttl      { font-size: 1.15rem !important; margin-bottom: 14px !important; }
+body.print-normal .e-title    { font-size: 1rem !important; }
+body.print-normal .e-org      { font-size: 0.88rem !important; }
+body.print-normal .e-date     { font-size: 0.82rem !important; }
+body.print-normal .e-desc     { font-size: 0.9rem !important; line-height: 1.8 !important; }
+body.print-normal .contact-row{ font-size: 0.85rem !important; }
+body.print-normal .hd-left    { padding: 32px 18px 24px !important; }
+body.print-normal .hd-right   { padding: 32px 32px 24px 24px !important; }
+body.print-normal .cv-side    { padding: 26px 18px 32px !important; }
+body.print-normal .cv-main    { padding: 26px 32px 32px 24px !important; }
+body.print-normal .s-sec      { margin-bottom: 26px !important; }
+body.print-normal .m-sec      { margin-bottom: 22px !important; }
+body.print-normal .entry      { margin-bottom: 16px !important; }
+
+/* BANYAK — isian banyak, font kecil */
+body.print-banyak .cv-name    { font-size: 2rem !important; }
+body.print-banyak .cv-role    { font-size: 0.72rem !important; letter-spacing: 2px !important; }
+body.print-banyak .cv-about   { font-size: 0.76rem !important; line-height: 1.6 !important; }
+body.print-banyak .s-ttl      { font-size: 0.62rem !important; }
+body.print-banyak .sk-name    { font-size: 0.76rem !important; }
+body.print-banyak .s-tag      { font-size: 0.68rem !important; padding: 3px 8px !important; }
+body.print-banyak .lg-name    { font-size: 0.76rem !important; }
+body.print-banyak .lg-lv      { font-size: 0.66rem !important; }
+body.print-banyak .ac-txt     { font-size: 0.72rem !important; }
+body.print-banyak .m-ttl      { font-size: 0.9rem !important; margin-bottom: 9px !important; }
+body.print-banyak .e-title    { font-size: 0.82rem !important; }
+body.print-banyak .e-org      { font-size: 0.72rem !important; }
+body.print-banyak .e-date     { font-size: 0.66rem !important; }
+body.print-banyak .e-desc     { font-size: 0.74rem !important; line-height: 1.55 !important; }
+body.print-banyak .contact-row{ font-size: 0.7rem !important; }
+body.print-banyak .hd-left    { padding: 20px 14px 16px !important; }
+body.print-banyak .hd-right   { padding: 20px 24px 16px 18px !important; }
+body.print-banyak .cv-side    { padding: 16px 14px 20px !important; }
+body.print-banyak .cv-main    { padding: 16px 22px 20px 16px !important; }
+body.print-banyak .s-sec      { margin-bottom: 16px !important; }
+body.print-banyak .m-sec      { margin-bottom: 13px !important; }
+body.print-banyak .entry      { margin-bottom: 9px !important; }
+
+/* =============================================
+   PRINT — A4
+============================================= */
+@media print {
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  @page { size: A4 portrait; margin: 8mm; }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    min-height: unset !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .toolbar, #saveInd, .modal-bg, .print-modal-bg,
+  .add-btn, .add-sec, .d-btn, .e-del,
+  .sec-del, .c-del, .photo-sizer, .range-sl,
+  #lockScreen { display: none !important; }
+
+  [contenteditable] { outline: none !important; }
+
+  .cv {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .m-sec { page-break-inside: avoid; }
+  .entry { page-break-inside: avoid; }
+  .cv-hd { page-break-inside: avoid; }
+}
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 560px) {
+  .cv-hd { flex-direction: column; }
+  .hd-left { width: 100%; flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--ln); padding: 18px 16px; }
+  .hd-right { padding: 16px; }
+  .cv-body { flex-direction: column; }
+  .cv-side { width: 100%; border-right: none; border-bottom: 1px solid var(--ln); }
+  .cv-name { font-size: 1.8rem; }
+  .cv-ft { flex-direction: column; gap: 4px; text-align: center; padding: 10px 16px; }
+  .ft-n { margin-left: 0; }
+  .tema-opts { gap: 4px; }
+  .topt { font-size: .65rem; padding: 4px 8px; }
+}
+
+/* ── PRINT SIZE MODAL ── */
+.print-modal-bg {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.print-modal-bg.open { display: flex; }
+
+.print-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 24px;
+  max-width: 340px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  text-align: center;
+}
+
+.print-modal h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.print-modal p {
+  font-size: .78rem;
+  color: #888;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.print-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.print-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: all .18s;
+  text-align: left;
+}
+.print-opt:hover { border-color: #6366f1; background: #eef2ff; }
+.print-opt.sel { border-color: #6366f1; background: #eef2ff; }
+
+.print-opt-icon { font-size: 1.4rem; flex-shrink: 0; }
+.print-opt-info { flex: 1; }
+.print-opt-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: .85rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 2px;
+}
+.print-opt-desc {
+  font-size: .72rem;
+  color: #888;
+}
+
+.print-go {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  border: none;
+  background: #111;
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-size: .88rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all .2s;
+}
+.print-go:hover { background: #333; }
+
+.print-cancel {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: .78rem;
+  color: #aaa;
+  cursor: pointer;
+}
+
+/* ── LOCK SCREEN ── */
+#lockScreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.lock-box {
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 24px;
+  padding: 40px 32px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+
+.lock-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  animation: lockBounce .6s ease;
+}
+
+@keyframes lockBounce {
+  0%   { transform: scale(0); opacity: 0; }
+  70%  { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.lock-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: -.3px;
+}
+
+.lock-sub {
+  font-size: .82rem;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.lock-input-wrap {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.lock-input {
+  width: 100%;
+  padding: 14px 48px 14px 18px;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  outline: none;
+  transition: border .2s;
+  text-align: center;
+}
+
+.lock-input::placeholder {
+  color: rgba(255,255,255,.3);
+  letter-spacing: 1px;
+  text-transform: none;
+  font-weight: 400;
+  font-size: .85rem;
+}
+
+.lock-input:focus { border-color: rgba(255,255,255,.4); }
+.lock-input.error { border-color: #ef4444; animation: shake .3s; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25%      { transform: translateX(-8px); }
+  75%      { transform: translateX(8px); }
+}
+
+.lock-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-size: .92rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all .2s;
+  letter-spacing: .5px;
+}
+
+.lock-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(99,102,241,.4); }
+.lock-btn:active { transform: translateY(0); }
+
+.lock-err {
+  font-size: .76rem;
+  color: #f87171;
+  margin-top: 10px;
+  min-height: 18px;
+  font-weight: 600;
+}
+
+.lock-footer {
+  margin-top: 24px;
+  font-size: .7rem;
+  color: rgba(255,255,255,.25);
+}
+
+.lock-attempts {
+  font-size: .72rem;
+  color: rgba(255,255,255,.35);
+  margin-top: 8px;
+}
+</style>
+</head>
+<body class="tm">
+
+<!-- =============================================
+     LOCK SCREEN
+============================================= -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <div class="lock-icon">🔐</div>
+    <div class="lock-title">CV Premium v4</div>
+    <div class="lock-sub">Masukkan kode akses untuk membuka template premium ini</div>
+    <div class="lock-input-wrap">
+      <input
+        class="lock-input"
+        id="lockInput"
+        type="text"
+        placeholder="Masukkan kode akses..."
+        maxlength="20"
+        autocomplete="off"
+        onkeydown="if(event.key==='Enter') checkCode()"
+      />
+    </div>
+    <button class="lock-btn" onclick="checkCode()">🔓 Buka Sekarang</button>
+    <div class="lock-err" id="lockErr"></div>
+    <div class="lock-attempts" id="lockAttempts"></div>
+    <div class="lock-footer">© Adhazone Premium Templates</div>
+  </div>
+</div>
+
+<!-- =============================================
+     TOOLBAR
+============================================= -->
+<div class="toolbar">
+  <div class="tb-row">
+    <div class="tb-lbl">✦ CV Premium v4</div>
+    <div class="tb-btns">
+      <button class="tbtn danger" onclick="resetCV()">🗑️ Reset</button>
+      <button class="tbtn" id="emojiBtn" onclick="toggleEmoji()">😊 Emoji</button>
+      <button class="tbtn" id="editBtn" onclick="toggleEdit()">✏️ Edit</button>
+      <button class="tbtn pdf" onclick="openPrint()">🖨️ PDF</button>
+    </div>
+  </div>
+  <div class="tema-bar">
+    <div class="tema-lbl">🎨 Tema</div>
+    <div class="tema-opts">
+      <button class="topt tm sel" onclick="setTema('tm',this)"><div class="tdot" style="background:#111"></div>Modern</button>
+      <button class="topt tw" onclick="setTema('tw',this)"><div class="tdot" style="background:#8b5e3c"></div>Warm</button>
+      <button class="topt td" onclick="setTema('td',this)"><div class="tdot" style="background:#e8c97a"></div>Dark</button>
+      <button class="topt te" onclick="setTema('te',this)"><div class="tdot" style="background:#c41e3a"></div>Editorial</button>
+      <button class="topt ta" onclick="setTema('ta',this)"><div class="tdot" style="background:#f0b429"></div>Art Deco</button>
+      <button class="topt tr" onclick="setTema('tr',this)"><div class="tdot" style="background:#c8860a"></div>Retro</button>
+    </div>
+  </div>
+</div>
+
+<!-- =============================================
+     CV
+============================================= -->
+<div class="cv" id="cvDoc">
+
+  <!-- HEADER -->
+  <div class="cv-hd">
+
+    <!-- LEFT -->
+    <div class="hd-left">
+      <!-- Photo -->
+      <div class="photo-outer">
+        <div class="photo-box" id="photoBox" onclick="document.getElementById('photoInput').click()">
+          <span id="photoIcon">👤</span>
+          <img id="photoImg" alt="foto"/>
+          <div class="photo-ov">📷 Ganti<br/>Foto</div>
+        </div>
+      </div>
+      <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)"/>
+
+      <!-- Photo sizer -->
+      <div class="photo-sizer">
+        <div class="sizer-lbl">📐 Ukuran Foto</div>
+        <input type="range" class="sizer-input" id="photoSizer" min="50" max="130" value="80" oninput="resizePhoto(this.value)"/>
+      </div>
+
+      <!-- Contacts -->
+      <div class="contacts" id="contactList">
+        <div class="contact-row"><div class="c-ic">✉</div><span contenteditable="false">emailkamu [at] gmail.com</span><button class="c-del" onclick="this.parentElement.remove()">✕</button></div>
+        <div class="contact-row"><div class="c-ic">📱</div><span contenteditable="false">+62 8xx-xxxx-xxxx</span><button class="c-del" onclick="this.parentElement.remove()">✕</button></div>
+        <div class="contact-row"><div class="c-ic">📍</div><span contenteditable="false">Kota, Provinsi</span><button class="c-del" onclick="this.parentElement.remove()">✕</button></div>
+        <div class="contact-row"><div class="c-ic">🔗</div><span contenteditable="false">linkedin.com/in/namakamu</span><button class="c-del" onclick="this.parentElement.remove()">✕</button></div>
+      </div>
+      <button class="add-btn" onclick="addContact()">＋ Tambah Kontak</button>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="hd-right">
+      <div class="cv-name" contenteditable="false">Nama <em>Lengkap</em><br/>Kamu</div>
+      <div class="cv-role" contenteditable="false">Jabatan / Profesi Kamu</div>
+      <div class="cv-about" contenteditable="false">Tulis ringkasan singkat tentang dirimu. IPK, semangat, dan keunggulanmu dalam <strong>2–3 kalimat</strong>.</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="cv-body">
+
+    <!-- SIDEBAR -->
+    <div class="cv-side">
+
+      <!-- Kompetensi -->
+      <div class="s-sec" id="ss-sk">
+        <div class="s-ttl"><span class="emoji-s">⚡</span> <span class="s-ttl-txt" contenteditable="false">Kompetensi</span> <button class="sec-del" onclick="delSec('ss-sk')">✕ Hapus</button></div>
+        <div id="skList">
+          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Rancang Pembelajaran</span><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div><input type="range" class="range-sl" min="10" max="100" value="90" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Kurikulum Merdeka</span><div class="sk-bar"><div class="sk-fill" style="width:88%"></div></div><input type="range" class="range-sl" min="10" max="100" value="88" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Manajemen Kelas</span><div class="sk-bar"><div class="sk-fill" style="width:82%"></div></div><input type="range" class="range-sl" min="10" max="100" value="82" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Asesmen & Evaluasi</span><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div><input type="range" class="range-sl" min="10" max="100" value="80" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+          <div class="sk-row"><div class="sk-wrap"><span class="sk-name" contenteditable="false">Media Pembelajaran</span><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div><input type="range" class="range-sl" min="10" max="100" value="85" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+        </div>
+        <button class="add-btn" onclick="addSkill()">＋ Tambah</button>
+      </div>
+
+      <!-- Tools -->
+      <div class="s-sec" id="ss-tl">
+        <div class="s-ttl"><span class="emoji-s">🛠️</span> <span class="s-ttl-txt" contenteditable="false">Tools</span> <button class="sec-del" onclick="delSec('ss-tl')">✕ Hapus</button></div>
+        <div class="tags-wrap" id="tlList">
+          <span class="s-tag"><span contenteditable="false">Canva</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
+          <span class="s-tag"><span contenteditable="false">Quizizz</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
+          <span class="s-tag"><span contenteditable="false">G. Classroom</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
+          <span class="s-tag"><span contenteditable="false">Padlet</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
+          <span class="s-tag"><span contenteditable="false">Figma</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></span>
+        </div>
+        <button class="add-btn" onclick="addTool()">＋ Tambah</button>
+      </div>
+
+      <!-- Bahasa -->
+      <div class="s-sec" id="ss-lg">
+        <div class="s-ttl"><span class="emoji-s">🌐</span> <span class="s-ttl-txt" contenteditable="false">Bahasa</span> <button class="sec-del" onclick="delSec('ss-lg')">✕ Hapus</button></div>
+        <div id="lgList">
+          <div class="lg-row"><div class="lg-wrap"><div class="lg-name" contenteditable="false">Bahasa Indonesia</div><div class="lg-lv" contenteditable="false">Native</div><div class="sk-bar"><div class="sk-fill" style="width:100%"></div></div><input type="range" class="range-sl" min="10" max="100" value="100" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+          <div class="lg-row"><div class="lg-wrap"><div class="lg-name" contenteditable="false">Bahasa Inggris</div><div class="lg-lv" contenteditable="false">Intermediate</div><div class="sk-bar"><div class="sk-fill" style="width:70%"></div></div><input type="range" class="range-sl" min="10" max="100" value="70" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+        </div>
+        <button class="add-btn" onclick="addLang()">＋ Tambah</button>
+      </div>
+
+      <!-- Penghargaan -->
+      <div class="s-sec" id="ss-ac">
+        <div class="s-ttl"><span class="emoji-s">🏆</span> <span class="s-ttl-txt" contenteditable="false">Penghargaan</span> <button class="sec-del" onclick="delSec('ss-ac')">✕ Hapus</button></div>
+        <div id="acList">
+          <div class="ac-row"><div class="ac-ic" contenteditable="false">🥇</div><span class="ac-txt" contenteditable="false">Penghargaan 1</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+          <div class="ac-row"><div class="ac-ic" contenteditable="false">🎓</div><span class="ac-txt" contenteditable="false">Penghargaan 2</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+          <div class="ac-row"><div class="ac-ic" contenteditable="false">⭐</div><span class="ac-txt" contenteditable="false">Penghargaan 3</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button></div>
+        </div>
+        <button class="add-btn" onclick="addAch()">＋ Tambah</button>
+      </div>
+
+    </div><!-- end sidebar -->
+
+    <!-- MAIN -->
+    <div class="cv-main" id="cvMain">
+
+      <!-- Pendidikan -->
+      <div class="m-sec" id="ms-edu">
+        <div class="m-ttl"><span class="emoji-s">🎓</span> <span class="m-ttl-txt" contenteditable="false">Pendidikan</span> <button class="sec-del" onclick="delMain('ms-edu')">✕ Hapus</button><div class="m-ttl-line"></div></div>
+        <div id="eduList">
+          <div class="entry">
+            <button class="e-del" onclick="delEntry(this)">✕</button>
+            <div class="e-top"><div class="e-title" contenteditable="false">S1 Nama Jurusan Kamu</div><div class="e-date" contenteditable="false">20xx – 20xx</div></div>
+            <div class="e-org" contenteditable="false">Nama Universitas · IPK 0.00</div>
+            <div class="e-desc" contenteditable="false">Tulis skripsi atau prestasi akademik kamu di sini.</div>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addEntry('eduList')">＋ Tambah Item</button>
+      </div>
+
+      <!-- Pengalaman -->
+      <div class="m-sec" id="ms-exp">
+        <div class="m-ttl"><span class="emoji-s">💼</span> <span class="m-ttl-txt" contenteditable="false">Pengalaman</span> <button class="sec-del" onclick="delMain('ms-exp')">✕ Hapus</button><div class="m-ttl-line"></div></div>
+        <div id="expList">
+          <div class="entry">
+            <button class="e-del" onclick="delEntry(this)">✕</button>
+            <div class="e-top"><div class="e-title" contenteditable="false">Nama Posisi / Jabatan</div><div class="e-date" contenteditable="false">Bln Thn – Bln Thn</div></div>
+            <div class="e-org" contenteditable="false">Nama Instansi, Kota</div>
+            <div class="e-desc" contenteditable="false">Deskripsikan tugas, pencapaian, atau kontribusi kamu.</div>
+          </div>
+          <div class="entry">
+            <button class="e-del" onclick="delEntry(this)">✕</button>
+            <div class="e-top"><div class="e-title" contenteditable="false">Nama Posisi / Jabatan</div><div class="e-date" contenteditable="false">Bln Thn – Bln Thn</div></div>
+            <div class="e-org" contenteditable="false">Nama Instansi, Kota</div>
+            <div class="e-desc" contenteditable="false">Deskripsikan tugas dan pencapaian kamu.</div>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addEntry('expList')">＋ Tambah Item</button>
+      </div>
+
+      <!-- Organisasi -->
+      <div class="m-sec" id="ms-org">
+        <div class="m-ttl"><span class="emoji-s">🤝</span> <span class="m-ttl-txt" contenteditable="false">Organisasi</span> <button class="sec-del" onclick="delMain('ms-org')">✕ Hapus</button><div class="m-ttl-line"></div></div>
+        <div id="orgList">
+          <div class="entry">
+            <button class="e-del" onclick="delEntry(this)">✕</button>
+            <div class="e-top"><div class="e-title" contenteditable="false">Jabatan di Organisasi</div><div class="e-date" contenteditable="false">20xx – 20xx</div></div>
+            <div class="e-org" contenteditable="false">Nama Organisasi · Nama Universitas</div>
+            <div class="e-desc" contenteditable="false">Deskripsikan peran dan kontribusi kamu.</div>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addEntry('orgList')">＋ Tambah Item</button>
+      </div>
+
+      <!-- Sertifikasi -->
+      <div class="m-sec" id="ms-cert">
+        <div class="m-ttl"><span class="emoji-s">📜</span> <span class="m-ttl-txt" contenteditable="false">Sertifikasi</span> <button class="sec-del" onclick="delMain('ms-cert')">✕ Hapus</button><div class="m-ttl-line"></div></div>
+        <div id="certList">
+          <div class="entry">
+            <button class="e-del" onclick="delEntry(this)">✕</button>
+            <div class="e-top"><div class="e-title" contenteditable="false">Nama Sertifikasi / Pelatihan</div><div class="e-date" contenteditable="false">Tahun</div></div>
+          </div>
+          <div class="entry">
+            <button class="e-del" onclick="delEntry(this)">✕</button>
+            <div class="e-top"><div class="e-title" contenteditable="false">Nama Sertifikasi / Pelatihan</div><div class="e-date" contenteditable="false">Tahun</div></div>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addEntry('certList')">＋ Tambah Item</button>
+      </div>
+
+      <button class="add-sec" onclick="openModal()">✦ Tambah Section Baru</button>
+
+    </div><!-- end main -->
+  </div><!-- end body -->
+
+  <!-- FOOTER -->
+  <div class="cv-ft">
+    <div class="ft-q" contenteditable="false">"Tulis kata motivasi atau moto hidupmu di sini."</div>
+    <div class="ft-n" contenteditable="false">Nama Kamu · Tahun</div>
+  </div>
+
+</div><!-- end cv -->
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <h3>✦ Tambah Section Baru</h3>
+    <p>Pilih preset atau ketik nama sendiri</p>
+    <div class="presets">
+      <button class="preset" onclick="pickP('🏆 Prestasi')">🏆 Prestasi</button>
+      <button class="preset" onclick="pickP('📂 Portofolio')">📂 Portofolio</button>
+      <button class="preset" onclick="pickP('📝 Publikasi')">📝 Publikasi</button>
+      <button class="preset" onclick="pickP('❤️ Volunteer')">❤️ Volunteer</button>
+      <button class="preset" onclick="pickP('🌐 Proyek')">🌐 Proyek</button>
+      <button class="preset" onclick="pickP('🎮 Hobi')">🎮 Hobi</button>
+      <button class="preset" onclick="pickP('👥 Referensi')">👥 Referensi</button>
+      <button class="preset" onclick="pickP('💻 Kursus')">💻 Kursus</button>
+      <button class="preset" onclick="pickP('🔬 Penelitian')">🔬 Penelitian</button>
+    </div>
+    <input id="secInput" placeholder="Atau ketik nama section..."/>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Batal</button>
+      <button class="modal-ok" onclick="doAddSec()">Tambahkan ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRINT SIZE MODAL -->
+<div class="print-modal-bg" id="printModalBg">
+  <div class="print-modal">
+    <h3>🖨️ Pilih Ukuran PDF</h3>
+    <p>Sesuaikan dengan jumlah isian CV kamu</p>
+    <div class="print-opts">
+      <button class="print-opt sel" id="po-kecil" onclick="selectPrint('kecil')">
+        <div class="print-opt-icon">📄</div>
+        <div class="print-opt-info">
+          <div class="print-opt-title">Isian Sedikit</div>
+          <div class="print-opt-desc">Font besar, padding lega — 1-2 pengalaman</div>
+        </div>
+      </button>
+      <button class="print-opt" id="po-normal" onclick="selectPrint('normal')">
+        <div class="print-opt-icon">📋</div>
+        <div class="print-opt-info">
+          <div class="print-opt-title">Isian Normal</div>
+          <div class="print-opt-desc">Font standar — 3-4 pengalaman</div>
+        </div>
+      </button>
+      <button class="print-opt" id="po-banyak" onclick="selectPrint('banyak')">
+        <div class="print-opt-icon">📑</div>
+        <div class="print-opt-info">
+          <div class="print-opt-title">Isian Banyak</div>
+          <div class="print-opt-desc">Font kecil, padat — 5+ pengalaman</div>
+        </div>
+      </button>
+    </div>
+    <button class="print-go" onclick="doPrint()">🖨️ Simpan PDF Sekarang</button>
+    <br/>
+    <button class="print-cancel" onclick="closePrint()">Batal</button>
+  </div>
+</div>
+
+<div id="saveInd">💾 Tersimpan</div>
+
+<script>
+'use strict';
+
+/* ── TEMA ── */
+const TEMAS = ['tm','tw','td','te','ta','tr'];
+let curTema = 'tm';
+
+function setTema(t, btn) {
+  TEMAS.forEach(c => document.body.classList.remove(c));
+  document.body.classList.add(t);
+  document.querySelectorAll('.topt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  curTema = t;
+  localStorage.setItem('cv4-tema', t);
+}
+
+/* ── EMOJI ── */
+let emojiOn = true;
+function toggleEmoji() {
+  emojiOn = !emojiOn;
+  document.querySelectorAll('.emoji-s').forEach(el => {
+    el.style.display = emojiOn ? '' : 'none';
+  });
+  document.getElementById('emojiBtn').textContent = emojiOn ? '😊 Emoji' : '😶 Emoji';
+  localStorage.setItem('cv4-emoji', emojiOn);
+}
+
+/* ── EDIT ── */
+const ESEL = [
+  '.cv-name', '.cv-role', '.cv-about',
+  '.contact-row span',
+  '.sk-name', '.s-tag span',
+  '.lg-name', '.lg-lv',
+  '.ac-ic', '.ac-txt',
+  '.e-title', '.e-org', '.e-date', '.e-desc', '.e-badge',
+  '.ft-q', '.ft-n',
+  '.s-ttl-txt',
+  '.m-ttl-txt'
+].join(',');
+
+function toggleEdit() {
+  const isEditing = document.body.classList.contains('editing');
+  
+  if (isEditing) {
+    // MATIKAN edit mode
+    document.body.classList.remove('editing');
+    document.querySelectorAll(ESEL).forEach(el => el.contentEditable = 'false');
+    const btn = document.getElementById('editBtn');
+    btn.textContent = '✏️ Edit';
+    btn.className = 'tbtn';
+  } else {
+    // AKTIFKAN edit mode
+    document.body.classList.add('editing');
+    document.querySelectorAll(ESEL).forEach(el => el.contentEditable = 'true');
+    const btn = document.getElementById('editBtn');
+    btn.textContent = '✅ Selesai';
+    btn.className = 'tbtn active-edit';
+  }
+}
+
+/* ── PHOTO ── */
+function handlePhoto(e) {
+  const f = e.target.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = ev => {
+    const img = document.getElementById('photoImg');
+    const icon = document.getElementById('photoIcon');
+    img.src = ev.target.result;
+    img.style.display = 'block';
+    icon.style.display = 'none';
+  };
+  r.readAsDataURL(f);
+}
+
+function resizePhoto(val) {
+  const box = document.getElementById('photoBox');
+  box.style.width = val + 'px';
+  box.style.height = val + 'px';
+}
+
+/* ── BAR SLIDER ── */
+function setBar(input) {
+  const wrap = input.closest('.sk-wrap') || input.closest('.lg-wrap');
+  if (!wrap) return;
+  const fill = wrap.querySelector('.sk-fill');
+  if (fill) fill.style.width = input.value + '%';
+}
+
+/* ── ADD / DELETE ── */
+function addContact() {
+  const d = document.createElement('div');
+  d.className = 'contact-row';
+  d.innerHTML = '<div class="c-ic">📌</div><span contenteditable="true">Kontak baru</span><button class="c-del" onclick="this.parentElement.remove()">✕</button>';
+  document.getElementById('contactList').appendChild(d);
+  d.querySelector('span').focus();
+}
+
+function addSkill() {
+  const d = document.createElement('div');
+  d.className = 'sk-row';
+  d.innerHTML = '<div class="sk-wrap"><span class="sk-name" contenteditable="true">Nama Keahlian</span><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div><input type="range" class="range-sl" min="10" max="100" value="75" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button>';
+  document.getElementById('skList').appendChild(d);
+  d.querySelector('.sk-name').focus();
+}
+
+function addTool() {
+  const s = document.createElement('span');
+  s.className = 's-tag';
+  s.innerHTML = '<span contenteditable="true">Tool Baru</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button>';
+  document.getElementById('tlList').appendChild(s);
+  s.querySelector('span').focus();
+}
+
+function addLang() {
+  const d = document.createElement('div');
+  d.className = 'lg-row';
+  d.innerHTML = '<div class="lg-wrap"><div class="lg-name" contenteditable="true">Nama Bahasa</div><div class="lg-lv" contenteditable="true">Level</div><div class="sk-bar"><div class="sk-fill" style="width:60%"></div></div><input type="range" class="range-sl" min="10" max="100" value="60" oninput="setBar(this)"/></div><button class="d-btn" onclick="this.parentElement.remove()">✕</button>';
+  document.getElementById('lgList').appendChild(d);
+  d.querySelector('.lg-name').focus();
+}
+
+function addAch() {
+  const d = document.createElement('div');
+  d.className = 'ac-row';
+  d.innerHTML = '<div class="ac-ic" contenteditable="true">⭐</div><span class="ac-txt" contenteditable="true">Penghargaan baru</span><button class="d-btn" onclick="this.parentElement.remove()">✕</button>';
+  document.getElementById('acList').appendChild(d);
+  d.querySelector('.ac-txt').focus();
+}
+
+function addEntry(listId) {
+  const d = document.createElement('div');
+  d.className = 'entry';
+  d.innerHTML = '<button class="e-del" onclick="delEntry(this)">✕</button><div class="e-top"><div class="e-title" contenteditable="true">Judul / Posisi</div><div class="e-date" contenteditable="true">Tahun</div></div><div class="e-org" contenteditable="true">Institusi / Tempat</div><div class="e-desc" contenteditable="true">Deskripsi singkat...</div>';
+  document.getElementById(listId).appendChild(d);
+  d.querySelector('.e-title').focus();
+}
+
+function delEntry(btn) {
+  if (confirm('Hapus item ini?')) btn.parentElement.remove();
+}
+
+function delSec(id) {
+  if (confirm('Hapus section ini?')) document.getElementById(id).remove();
+}
+
+function delMain(id) {
+  if (confirm('Hapus section ini?')) document.getElementById(id).remove();
+}
+
+/* ── SECTION MODAL ── */
+let secN = 0;
+function openModal() {
+  document.getElementById('secInput').value = '';
+  document.getElementById('modalBg').classList.add('open');
+  setTimeout(() => document.getElementById('secInput').focus(), 100);
+}
+function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
+function pickP(n) { document.getElementById('secInput').value = n; document.getElementById('secInput').focus(); }
+
+function doAddSec() {
+  const name = document.getElementById('secInput').value.trim();
+  if (!name) return;
+  secN++;
+  const sid = 'ms-c' + secN;
+  const lid = 'el-c' + secN;
+  const d = document.createElement('div');
+  d.className = 'm-sec';
+  d.id = sid;
+  d.innerHTML = `<div class="m-ttl"><span class="emoji-s">${name.match(/^\p{Emoji}/u)?.[0] || '✦'}</span> <span contenteditable="true">${name.replace(/^\p{Emoji}\s*/u, '')}</span> <button class="sec-del" onclick="delMain('${sid}')">✕ Hapus</button><div class="m-ttl-line"></div></div><div id="${lid}"><div class="entry"><button class="e-del" onclick="delEntry(this)">✕</button><div class="e-top"><div class="e-title" contenteditable="true">Judul / Posisi</div><div class="e-date" contenteditable="true">Tahun</div></div><div class="e-org" contenteditable="true">Institusi / Tempat</div><div class="e-desc" contenteditable="true">Deskripsi singkat...</div></div></div><button class="add-btn" onclick="addEntry('${lid}')">＋ Tambah Item</button>`;
+  document.querySelector('.add-sec').before(d);
+  closeModal();
+  if (!emojiOn) d.querySelectorAll('.emoji-s').forEach(el => el.style.display = 'none');
+  setTimeout(() => d.querySelector('.e-title').focus(), 100);
+}
+
+document.getElementById('modalBg').addEventListener('click', e => { if (e.target.id === 'modalBg') closeModal(); });
+document.getElementById('secInput').addEventListener('keydown', e => { if (e.key === 'Enter') doAddSec(); if (e.key === 'Escape') closeModal(); });
+
+/* ── AUTO SAVE ── */
+let saveTimer = null;
+function autoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try {
+      const data = {
+        html: document.getElementById('cvDoc').innerHTML,
+        foto: document.getElementById('photoImg').src || '',
+        fotoSize: document.getElementById('photoSizer').value,
+        tema: curTema,
+        emoji: emojiOn,
+        at: new Date().toLocaleString('id-ID')
+      };
+      localStorage.setItem('cv4-save', JSON.stringify(data));
+      showInd('💾 Tersimpan otomatis');
+    } catch(e) {}
+  }, 1500);
+}
+
+function showInd(msg) {
+  const el = document.getElementById('saveInd');
+  el.textContent = msg;
+  el.style.opacity = '1';
+  setTimeout(() => el.style.opacity = '0', 2500);
+}
+
+function autoLoad() {
+  try {
+    const raw = localStorage.getItem('cv4-save');
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    if (!confirm('📂 Data CV tersimpan ditemukan!\nTerakhir: ' + d.at + '\n\nMuat data tersimpan?')) return;
+
+    document.getElementById('cvDoc').innerHTML = d.html;
+
+    if (d.foto && d.foto.startsWith('data:')) {
+      const img = document.getElementById('photoImg');
+      if (img) { img.src = d.foto; img.style.display = 'block'; }
+      const ic = document.getElementById('photoIcon');
+      if (ic) ic.style.display = 'none';
+    }
+
+    if (d.fotoSize) resizePhoto(d.fotoSize);
+
+    emojiOn = d.emoji !== false;
+    document.getElementById('emojiBtn').textContent = emojiOn ? '😊 Emoji' : '😶 Emoji';
+    if (!emojiOn) document.querySelectorAll('.emoji-s').forEach(el => el.style.display = 'none');
+
+    showInd('✅ Data dimuat!');
+  } catch(e) {}
+}
+
+function resetCV() {
+  if (confirm('Hapus semua data tersimpan dan mulai dari awal?')) {
+    localStorage.removeItem('cv4-save');
+    location.reload();
+  }
+}
+
+document.getElementById('cvDoc').addEventListener('input', autoSave);
+
+/* ── PRINT SIZE ── */
+let printSize = 'kecil';
+
+function openPrint() {
+  document.getElementById('printModalBg').classList.add('open');
+}
+
+function closePrint() {
+  document.getElementById('printModalBg').classList.remove('open');
+}
+
+function selectPrint(size) {
+  printSize = size;
+  ['kecil','normal','banyak'].forEach(s => {
+    document.getElementById('po-' + s).classList.remove('sel');
+  });
+  document.getElementById('po-' + size).classList.add('sel');
+}
+
+function doPrint() {
+  closePrint();
+  document.body.classList.remove('print-kecil','print-normal','print-banyak');
+  document.body.classList.add('print-' + printSize);
+
+  // Delay untuk pastikan class ter-apply dulu
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => {
+      document.body.classList.remove('print-kecil','print-normal','print-banyak');
+    }, 2000);
+  }, 500);
+}
+
+document.getElementById('printModalBg').addEventListener('click', e => {
+  if (e.target.id === 'printModalBg') closePrint();
+});
+
+/* ── INIT ── */
+const savedTema = localStorage.getItem('cv4-tema');
+if (savedTema) {
+  const btn = document.querySelector('.topt.' + savedTema);
+  if (btn) setTema(savedTema, btn);
+}
+
+const savedEmoji = localStorage.getItem('cv4-emoji');
+if (savedEmoji === 'false') { emojiOn = true; toggleEmoji(); }
+
+window.addEventListener('load', () => initLock());
+
+/* ── KODE AKSES ── */
+
+// ═══════════════════════════════════════
+// DAFTAR KODE AKSES YANG VALID
+// Tambah atau hapus kode di sini
+// Format: 'KODE': 'nama pembeli (opsional)'
+// ═══════════════════════════════════════
+const KODE_VALID = {
+  'ADHAZONE-2026': 'Pembeli',
+};
+
+let attempts = 0;
+const MAX_ATTEMPTS = 5;
+
+function checkCode() {
+  const input = document.getElementById('lockInput');
+  const kode = input.value.trim().toUpperCase();
+  const errEl = document.getElementById('lockErr');
+  const attEl = document.getElementById('lockAttempts');
+
+  // Cek sudah terlalu banyak salah
+  if (attempts >= MAX_ATTEMPTS) {
+    errEl.textContent = '⛔ Terlalu banyak percobaan. Refresh halaman.';
+    input.disabled = true;
+    return;
+  }
+
+  // Cek kode
+  if (KODE_VALID[kode]) {
+    // ✅ BENAR
+    localStorage.setItem('cv4-access', kode);
+    localStorage.setItem('cv4-access-time', Date.now());
+
+    const lock = document.getElementById('lockScreen');
+    lock.style.transition = 'opacity .5s';
+    lock.style.opacity = '0';
+    setTimeout(() => {
+      lock.style.display = 'none';
+      // Load data tersimpan setelah kunci terbuka
+      autoLoad();
+    }, 500);
+
+    input.classList.remove('error');
+    errEl.textContent = '';
+
+  } else {
+    // ❌ SALAH
+    attempts++;
+    input.classList.add('error');
+    setTimeout(() => input.classList.remove('error'), 400);
+    input.value = '';
+
+    const sisa = MAX_ATTEMPTS - attempts;
+    errEl.textContent = '❌ Kode tidak valid!';
+    if (sisa > 0) {
+      attEl.textContent = `Sisa percobaan: ${sisa}`;
+    } else {
+      attEl.textContent = '';
+      errEl.textContent = '⛔ Akses diblokir. Refresh halaman.';
+      input.disabled = true;
+    }
+  }
+}
+
+function initLock() {
+  const savedCode = localStorage.getItem('cv4-access');
+
+  if (savedCode && KODE_VALID[savedCode]) {
+    // Sudah pernah akses di perangkat ini — langsung buka
+    document.getElementById('lockScreen').style.display = 'none';
+    // Baru load data setelah lock terbuka
+    setTimeout(autoLoad, 400);
+  }
+  // Kalau tidak ada kode → lockScreen tetap tampil
+  // autoLoad TIDAK dipanggil sampai kode diinput
+}
+
+// Jalankan saat halaman load — GANTIKAN window.addEventListener load
+initLock();
+</script>
+</body>
+</html>
